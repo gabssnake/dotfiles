@@ -1,48 +1,49 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
 
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# editor
+export GIT_EDITOR="subl --wait --new-window"
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+# better history
+export HISTCONTROL=ignoreboth:erasedups
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+# enable colors
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxGxGx
 
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+# get current git branch
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
 
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null;
-done;
+# PS1 line 
+export PS1="\[\e[0;36m\]\u \[\e[0;34m\]\w\[\e[0;32m\]\$(parse_git_branch) \[\e[0;34m\]$ \[\e[m\]"
 
-# Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-	source "$(brew --prefix)/share/bash-completion/bash_completion";
-elif [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion;
-fi;
+# brew
+export PATH="/usr/local/sbin:$PATH"
 
-# Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
-fi;
+# autocompletion
+source ~/.git-completion.bash
+source ~/.npm-completion.bash
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+# aliases
+source ~/.aliases
 
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults;
+# make rm command send stuff to .trash
+function rm () {
+  local path
+  for path in "$@"; do
+    # ignore any arguments
+    if [[ "$path" = -* ]]; then :
+    else
+      local dst=${path##*/}
+      # append the time if necessary
+      while [ -e ~/.Trash/"$dst" ]; do
+        dst="$dst "$(date +%H-%M-%S)
+      done
+      mv "$path" ~/.Trash/"$dst"
+    fi
+  done
+}
 
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+# stegosaurus, small, moofasa, moose, three-eyes
+# COWPATH=/usr/local/Cellar/cowsay/3.03/share/cows
+fortune -as | cowsay -f small
