@@ -2,12 +2,16 @@ set ruler laststatus=2 number title
 
 " Enable syntax highlighting
 syntax enable 
+colorscheme elflord
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+" Make backspace friendly
+set backspace=indent,eol,start
 
 " Use spaces instead of tabs
 set expandtab
@@ -21,7 +25,7 @@ set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
+set tw=90
 
 set ai "Auto indent
 set si "Smart indent
@@ -41,11 +45,6 @@ function! HasPaste()
     return ''
 endfunction
 
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
 " Ignore case when searching
 set ignorecase
 
@@ -63,6 +62,13 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
+
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+" if has('mouse')
+"   set mouse=a
+" endif
+
+" execute pathogen#infect()
+" syntax on
+" filetype plugin indent on

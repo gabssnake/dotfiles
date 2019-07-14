@@ -1,4 +1,5 @@
-# bash
+
+## Bash
 
   # -G show colors
   # -p add a slash to folders
@@ -7,8 +8,10 @@
   #  disable temporalily with \ls 
   alias ls='ls -laGpFh'
 
-  # common mistake
+  # Avoid common mistakes
   alias cd..='cd ..'
+  alias pnig='ping'
+  alias gti='git'
 
   # -i prompts confirmation
   # -v verbose mode
@@ -16,50 +19,79 @@
   alias mv='mv -iv'
   alias cp='cp -iv'
 
-# git
+  # Quick sudo
+  alias fuck='sudo $(history -p \!\!)'
 
-  # churn per file
+  # Always enable colored `grep` output
+  alias grep='grep --color=auto'
+
+
+## Git
+
+  # Files most frequently modified
   alias churn="git log --pretty='format:' --name-only \
     | grep -v ^$ | sort | uniq -c \
     | sed -e 's/^ *//' | sort -rg | head -n 30"
 
-  # reset changes
+  # Reset changes, including newly created files
   alias nah="git reset --hard; git clean -df"
 
-  # include changes into last commit
+  # Include changes into last commit
   alias yep='git a && git commit --amend --no-edit'
 
-# npm
+  # Undo last commit and move files in commit to staging
+  alias undo='git reset --soft HEAD^'
+
+
+## Node
   alias r="npm run"
+  alias n="sudo n"
+
+  # Show global modules
   alias npmls="npm list -g --depth=0"
 
-# utilities
+  # Remove modules for a clean install
+  alias prune="rm -rf node_modules && rm -f package-lock.json"
 
-  # http static server
-  alias serve="python -m SimpleHTTPServer 8000"
+  # Bootstrap quick project folder
+  alias init='git init && cat ~/.gitignore_global >> .gitignore && echo "package-lock.json -diff" >> .gitattributes && npm init -y && npm i --save dotenv debug && echo "require(\"dotenv\").config();" >> index.js && echo "DEBUG=*" >> .env'
 
-  # quickly get ip
-  alias ip='ifconfig | grep broadcast'
 
-  # use spotlight to search
+
+## Utilities
+
+  # Open current folder in Sublime or VSCode
+  alias s='subl .'
+  alias c='code .'
+
+  # Use spotlight to search
   alias f='mdfind -name'
 
-  # quick sudo
-  alias fuck='sudo $(history -p \!\!)'
+  # Quickly get ip
+  alias ip='ifconfig | grep broadcast'
+  alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
 
-  # restart sound
-  alias sound="sudo killall coreaudiod"
+  # Lock the screen (when going AFK)
+  alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# servers by name
+  # Print each PATH entry on a separate line
+  alias path='echo -e ${PATH//:/\\n}'
 
-  # servers (dev)
-  alias decines="ssh root@10.113.94.156"
-  alias helsinki="ssh root@10.113.94.156"
-  alias amsterdam="ssh root@172.16.0.55"
-  alias dev="ssh GVS@10.169.130.24"
+  # Http static server
+  alias serve="python -m SimpleHTTPServer 8000"
 
-  # servers (customers)
-  alias ima1="ssh root@10.228.94.136"
-  alias ima2="ssh root@10.228.94.146"
-  alias timon="ssh root@10.228.94.156"
-  alias bourg="ssh root@93.17.9.227"
+  # Record terminal with python3 lib
+  alias record='termtosvg --theme dracula'
+
+  # npm -g install localtunnel
+  alias localtunnel='lt'
+
+
+## Other
+
+  # Restart sound to fix missing sound
+  alias fixsound="sudo killall coreaudiod"
+
+  # There is a conflict with Viscosity VPN and VirtualBox, apparently
+  alias fixvpn='sudo kextunload -b org.virtualbox.kext.VBoxNetAdp'
+

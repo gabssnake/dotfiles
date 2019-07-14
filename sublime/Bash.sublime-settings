@@ -1,0 +1,10 @@
+{
+	"extensions":
+	[
+		".env",
+		".conf",
+		".aliases",
+		".bash_profile",
+		"conf"
+	]
+}
