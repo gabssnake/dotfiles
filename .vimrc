@@ -62,13 +62,10 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+" Fuzzy Finder with Ctrl+P
+nnoremap <C-p> :<C-u>FZF<cr>
 
-
-" In many terminal emulators the mouse works just fine, thus enable it.
+" In many terminal emulators mouse works fine
 " if has('mouse')
 "   set mouse=a
 " endif
-
-" execute pathogen#infect()
-" syntax on
-" filetype plugin indent on
