@@ -5,7 +5,7 @@
   # -p add a slash to folders
   # -F adds more flags to other files
   # -h adds human readable dates
-  #  disable temporalily with \ls 
+  #  disable temporalily with \ls
   alias ls='ls -laGpFh'
 
   # Avoid common mistakes
@@ -42,6 +42,19 @@
   # Undo last commit and move files in commit to staging
   alias undo='git reset --soft HEAD^'
 
+  # Show the last bit of the git log
+  alias lol='clear && git lola --color=always | head'
+
+  # Interactive rebase of last 10 commits
+  alias reb='git rebase -i HEAD~8'
+
+  # never push force
+  alias please='git push --force-with-lease'
+
+  # Reinstall Git submodules
+  alias submod='git submodule deinit --all --force && \
+    git submodule update --init --recursive'
+
 
 ## Node
   alias r="npm run"
@@ -54,8 +67,13 @@
   alias prune="rm -rf node_modules && rm -f package-lock.json"
 
   # Bootstrap quick project folder
-  alias init='git init && cat ~/.gitignore_global >> .gitignore && echo "package-lock.json -diff" >> .gitattributes && npm init -y && npm i --save dotenv debug && echo "require(\"dotenv\").config();" >> index.js && echo "DEBUG=*" >> .env'
-
+  alias init='git init && \
+    cat ~/.gitignore_global >> .gitignore && \
+    echo "package-lock.json -diff" >> .gitattributes && \
+    npm init -y && \
+    npm i --save dotenv debug && \
+    echo "require(\"dotenv\").config();" >> index.js && \
+    echo "DEBUG=*" >> .env'
 
 
 ## Utilities
@@ -64,15 +82,8 @@
   alias s='subl .'
   alias c='code .'
 
-  # Use spotlight to search
-  alias f='mdfind -name'
-
   # Quickly get ip
-  alias ip='ifconfig | grep broadcast'
   alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-  # Lock the screen (when going AFK)
-  alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
   # Print each PATH entry on a separate line
   alias path='echo -e ${PATH//:/\\n}'
@@ -87,11 +98,10 @@
   alias localtunnel='lt'
 
 
-## Other
+## Darwin specific
 
   # Restart sound to fix missing sound
   alias fixsound="sudo killall coreaudiod"
 
   # There is a conflict with Viscosity VPN and VirtualBox, apparently
   alias fixvpn='sudo kextunload -b org.virtualbox.kext.VBoxNetAdp'
-

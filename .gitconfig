@@ -3,8 +3,9 @@
   email = gabssnake@gmail.com
 
 [core]
-  excludesfile = ~/.gitignore_global
   editor = subl -n -w
+  excludesfile = ~/.gitignore_global
+  attributesfile = ~/.gitattributes
 
 [color]
   branch = auto
@@ -31,7 +32,7 @@
   s = status -sb
   a = add -A :/
   p = add -p
-  c = commit -m 
+  c = commit -m
   l =    log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 

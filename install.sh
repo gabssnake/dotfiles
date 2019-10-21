@@ -1,79 +1,16 @@
-cp .aliases ~/
-cp .git-completion.bash ~/
-cp .npm-completion.bash ~/
-cp .bash_profile ~/
-cp .hushlogin ~/
-cp .vimrc ~/
-cp .gitignore_global ~/
-cp .gitconfig ~/
-cp .npmrc ~/
-cp .eslintrc ~/
+#!/usr/bin/env bash
 
-chmod +x ./macos.sh
-chmod +x ./brew.sh
+rm -rf .bash_profile .aliases .vimrc .gitconfig .npmrc .gitignore_global .hushlogin Vagrantfile .cowfiles .git-completion.bash .npm-completion.bash
 
-./macos.sh
-./brew.sh
+cp .bash_profile $HOME/.bash_profile
+cp .aliases $HOME/.aliases
+cp .vimrc $HOME/.vimrc
+cp .gitconfig $HOME/.gitconfig
+cp .npmrc $HOME/.npmrc
+cp .gitignore_global $HOME/.gitignore_global
+cp .hushlogin $HOME/.hushlogin
+cp Vagrantfile $HOME/Vagrantfile
+cp -r .cowfiles $HOME/.cowfiles
 
-
-# Spectacle.app set up keyboard shortcuts
-cp ./spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
-
-# iTerm2.app profiles and settings
-cp ./com.googlecode.iterm2.plist ~/Library/Preferences/
-
-# Sublime Text
-# - Package Manager
-# - Babel
-# - JsPrettier
-# - SideBarEnhancements
-# - SublimeLinter
-# - SublimeLinter-contrib-htmlhint
-# - SublimeLinter-contrib-semistandard
-# - SublimeLinter-contrib-standard
-# - SublimeLinter-csslint
-# - SublimeLinter-eslint
-# - SublimeLinter-json
-
-cd sublime/ "~/Library/Application\ Support/Sublime\ Text*/Packages/User/"
-
-npm i -g \
-	eslint \
-	csslint \
-	htmlhint \
-	prettier \
-	eslint-plugin-prettier \
-	eslint-config-prettier \
-	eslint-plugin-react
-
-cat << EOF > ~/.eslintrc
-{
-  "plugins": ["prettier", "react"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "env": {
-    "shared-node-browser": true,
-    "mocha": true,
-    "jest": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": { "jsx": true }
-  }
-}
-EOF
-
-cat << EOF > ~/.prettierrc
-{
-  "singleQuote": true
-}
-EOF
-
-
-
-# Our custom cowsay figure, see cowsay -l
-cp dakota.cow /usr/local/Cellar/cowsay/3.04/share/cows
+cp .git-completion.bash $HOME/.git-completion.bash
+npm completion > $HOME/.npm-completion.bash

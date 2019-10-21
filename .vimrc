@@ -1,7 +1,7 @@
 set ruler laststatus=2 number title
 
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 colorscheme elflord
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -48,24 +48,22 @@ endfunction
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" Fuzzy Finder with Ctrl+P
-nnoremap <C-p> :<C-u>FZF<cr>
-
-" In many terminal emulators mouse works fine
+" In many terminal emulators the mouse works just fine, thus enable it.
 " if has('mouse')
 "   set mouse=a
 " endif

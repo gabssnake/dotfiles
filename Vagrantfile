@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     export DEBIAN_FRONTEND=noninteractive
 
-    # Change root password (lol)
+    # Change root password
     echo 'root:root' | chpasswd
 
     # Allow root SSH
@@ -22,8 +22,8 @@ Vagrant.configure("2") do |config|
     apt-get install -y zsh vim tmux git > /dev/null
 
     # Azerty keyboard crazyness
-    sudo setxkbmap fr
-    sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"fr\"/g' /etc/default/keyboard
+    # sudo setxkbmap fr
+    # sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"fr\"/g' /etc/default/keyboard
   SHELL
 
   config.vm.post_up_message = %{
