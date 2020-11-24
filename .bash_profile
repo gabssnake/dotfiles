@@ -59,4 +59,21 @@ source ~/.bash_aliases 2> /dev/null
 source ~/.workrc 2> /dev/null
 
 
+# Darwin
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "darwin";
+fi
+
+# Linux
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    echo "linux";
+fi
+
+# Welcome
+if [ -d "$HOME/.cowfiles" ] ; then
+    COWPATH="$COWPATH:$HOME/.cowfiles"
+    fortune -as | cowsay -f dakota | lolcat
+fi
+
+# Rust
 export PATH="$HOME/.cargo/bin:$PATH"
