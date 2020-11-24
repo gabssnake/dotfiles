@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 ## Bash
 
@@ -15,9 +16,9 @@
 
   # -i prompts confirmation
   # -v verbose mode
-  alias rm='rm -iv'
-  alias mv='mv -iv'
-  alias cp='cp -iv'
+  # alias rm='rm -iv'
+  # alias mv='mv -iv'
+  # alias cp='cp -iv'
 
   # Quick sudo
   alias fuck='sudo $(history -p \!\!)'
@@ -37,28 +38,26 @@
   alias nah="git reset --hard; git clean -df"
 
   # Include changes into last commit
-  alias yep='git a && git commit --amend --no-edit'
+  alias yep="git a && git commit --amend --no-edit"
 
   # Undo last commit and move files in commit to staging
-  alias undo='git reset --soft HEAD^'
+  alias undo="git reset --soft HEAD^"
 
   # Show the last bit of the git log
-  alias lol='clear && git lola --color=always | head'
+  alias lol="clear && git lola --color=always | head -n 20"
 
-  # Interactive rebase of last 10 commits
-  alias reb='git rebase -i HEAD~8'
+  # Interactive rebase of last n commits
+  alias reb="git rebase -i HEAD~8"
 
   # never push force
-  alias please='git push --force-with-lease'
+  alias please="git push --force-with-lease"
 
-  # Reinstall Git submodules
-  alias submod='git submodule deinit --all --force && \
-    git submodule update --init --recursive'
+  # Reset local branch to matching remote
+  alias drop="git reset --hard @{upstream}"
 
 
 ## Node
   alias r="npm run"
-  alias n="sudo n"
 
   # Show global modules
   alias npmls="npm list -g --depth=0"
@@ -83,7 +82,7 @@
   alias c='code .'
 
   # Quickly get ip
-  alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
+  alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
   # Print each PATH entry on a separate line
   alias path='echo -e ${PATH//:/\\n}'
@@ -97,11 +96,3 @@
   # npm -g install localtunnel
   alias localtunnel='lt'
 
-
-## Darwin specific
-
-  # Restart sound to fix missing sound
-  alias fixsound="sudo killall coreaudiod"
-
-  # There is a conflict with Viscosity VPN and VirtualBox, apparently
-  alias fixvpn='sudo kextunload -b org.virtualbox.kext.VBoxNetAdp'

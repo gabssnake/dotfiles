@@ -1,9 +1,0 @@
-// SublimeLinter Settings - User
-{
-  "linters": {
-    "eslint": {
-      "executable": "~/n/bin/eslint",
-      "args": ["--no-eslintrc", "-c", "~/.eslintrc"]
-    }
-  }
-}

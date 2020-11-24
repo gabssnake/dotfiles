@@ -1,0 +1,26 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Dockerfile Syntax Highlighting",
+		"ESLint-Formatter",
+		"INI",
+		"JsPrettier",
+		"LSP",
+		"LSP-eslint",
+		"LSP-typescript",
+		"Package Control",
+		"Rust Enhanced",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-contrib-rustc",
+		"SublimeLinter-contrib-write-good",
+		"SublimeLinter-eslint",
+		"SublimeLinter-shellcheck",
+		"TOML"
+	]
+}

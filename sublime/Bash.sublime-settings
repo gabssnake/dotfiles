@@ -3,8 +3,7 @@
 	[
 		".env",
 		".conf",
-		".aliases",
-		".bash_profile",
-		"conf"
+		".bash_aliases",
+		".bash_profile"
 	]
 }

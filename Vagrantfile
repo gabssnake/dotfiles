@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
     # Install basic stuff
     apt-get update > /dev/null
-    apt-get install -y zsh vim tmux git > /dev/null
+    apt-get install -y vim tmux git curl > /dev/null
 
     # Azerty keyboard crazyness
     # sudo setxkbmap fr

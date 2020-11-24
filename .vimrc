@@ -62,8 +62,3 @@ set showmatch
 
 " How many tenths of a second to blink when matching brackets
 set mat=2
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-" if has('mouse')
-"   set mouse=a
-" endif

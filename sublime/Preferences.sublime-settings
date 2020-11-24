@@ -1,19 +1,11 @@
 {
 	"always_show_minimap_viewport": true,
-	"auto_complete_commit_on_tab": false,
 	"auto_complete_delay": 30,
-	"auto_complete_selector": "source, text",
-	"auto_indent": true,
 	"bold_folder_labels": true,
 	"caret_style": "phase",
 	"close_windows_when_empty": true,
-	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
-	"detect_indentation": true,
-	"draw_centered": false,
-	"draw_indent_guides": true,
+	"color_scheme": "Packages/User/themes/oceanic-next.tmTheme",
 	"draw_minimap_border": true,
-	"fade_fold_buttons": true,
-	"fold_buttons": true,
 	"folder_exclude_patterns":
 	[
 		".git",
@@ -21,46 +13,32 @@
 		"coverage",
 		".vagrant",
 		".nyc_output",
-		"*.leveldb*"
+		"target"
 	],
-	"font_face": "Source Code Pro",
-	"font_size": 21,
-	"gutter": true,
+	"font_size": 13,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"SublimeLinter-contrib-semistandard",
-		"SublimeLinter-contrib-standard",
+		"Rust",
+		"SublimeLinter-contrib-write-good",
 		"Vintage"
 	],
 	"indent_guide_options":
 	[
 		"draw_active"
 	],
-	"indent_to_bracket": false,
-	"inhibit_completions": false,
-	"line_numbers": true,
 	"line_padding_bottom": 10,
 	"line_padding_top": 10,
 	"margin": 0,
 	"overlay_scroll_bars": "enabled",
 	"rulers":
 	[
-		80,
-		100,
-		120
+		80
 	],
-	"scroll_past_end": true,
-	"smart_indent": true,
-	"soda_classic_tabs": true,
-	"soda_folder_icons": false,
 	"spell_check": true,
-	"tab_size": 2,
+	"tab_size": 4,
 	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_automatic_white_space": true,
-	"use_tab_stops": true,
-	"word_wrap": "auto",
 	"wrap_width": 80
 }
