@@ -1,11 +1,8 @@
 {
-	"always_show_minimap_viewport": true,
-	"auto_complete_delay": 30,
-	"bold_folder_labels": true,
-	"caret_style": "phase",
+	"always_show_minimap_viewport": false,
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/themes/oceanic-next.tmTheme",
-	"draw_minimap_border": true,
+	"draw_indent_guides": false,
 	"folder_exclude_patterns":
 	[
 		".git",
@@ -16,11 +13,11 @@
 		"target"
 	],
 	"font_size": 13,
-	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
 		"Rust",
+		"sublime-text-2-buildview",
 		"SublimeLinter-contrib-write-good",
 		"Vintage"
 	],
@@ -28,8 +25,11 @@
 	[
 		"draw_active"
 	],
-	"line_padding_bottom": 10,
-	"line_padding_top": 10,
+	"line_numbers": true,
+	"line_padding_bottom": 4,
+	"line_padding_top": 4,
+	"draw_minimap_border": true,
+	"always_show_minimap_viewport": true,
 	"margin": 0,
 	"overlay_scroll_bars": "enabled",
 	"rulers":

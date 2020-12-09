@@ -15,7 +15,7 @@
     ui = auto
 
 [credential]
-   helper = cache
+	helper = cache
 
 [push]
     default = current

@@ -1,0 +1,24 @@
+{
+    // For errors/warnings, how to show the inline message.
+    // "normal" - Shows the message inline.
+    // "popup" - Show popup on mouse hover.
+    // "none" - Do not show the message inline.
+    "rust_phantom_style": "popup",
+
+    // For errors/warnings, how to highlight the region of the error.
+    // "outline" - Outlines the region.
+    // "solid_underline" - A solid underline.
+    // "stippled_underline" - A stippled underline.
+    // "squiggly_underline" - A squiggly underline.
+    // "none" - No outlining.
+    "rust_region_style": "squiggly_underline",
+
+    // For errors/warnings, what kind of icon to use in the gutter.
+    // "shape" - Shape-based icons.
+    // "circle" - Simple circle icons.
+    // "none" - Do not place icons in the gutter.
+    "rust_gutter_style": "circle",
+
+    // If `true`, displays diagnostic messages under the cursor in the status bar.
+    "rust_message_status_bar": true,
+}

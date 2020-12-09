@@ -6,19 +6,17 @@
 	"installed_packages":
 	[
 		"AdvancedNewFile",
+		"Bitbake Syntax",
 		"Dockerfile Syntax Highlighting",
 		"ESLint-Formatter",
 		"INI",
 		"JsPrettier",
-		"LSP",
-		"LSP-eslint",
-		"LSP-typescript",
 		"Package Control",
 		"Rust Enhanced",
 		"SideBarEnhancements",
+		"sublime-text-2-buildview",
 		"SublimeLinter",
 		"SublimeLinter-contrib-rustc",
-		"SublimeLinter-contrib-write-good",
 		"SublimeLinter-eslint",
 		"SublimeLinter-shellcheck",
 		"TOML"
