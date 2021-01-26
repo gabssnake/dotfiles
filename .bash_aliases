@@ -96,3 +96,6 @@
   # npm -g install localtunnel
   alias localtunnel='lt'
 
+  # sudo apt-get install tldr
+  alias man="tldr"
+
