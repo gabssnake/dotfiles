@@ -3,7 +3,7 @@
 	email = gabriel.vivas@stormshield.eu
 
 [core]
-    editor = subl -n -w
+    editor = vim
     excludesfile = ~/.gitignore_global
 
 [color]
@@ -24,7 +24,6 @@
 [alias]
     staged = diff --staged
     unstage = reset HEAD --
-    squash = reset --hard HEAD~1
     s = status -sb
     ss = status -sb
     sss = status -sb
@@ -49,3 +48,5 @@
 
 [pull]
    rebase = true
+[rerere]
+	enabled = true

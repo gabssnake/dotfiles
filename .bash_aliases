@@ -34,26 +34,35 @@
     | grep -v ^$ | sort | uniq -c \
     | sed -e 's/^ *//' | sort -rg | head -n 30"
 
-  # Reset changes, including newly created files
-  alias nah="git reset --hard; git clean -df"
+  # Don't judge me
+  alias s="git status -sb"
+
+  # Show the last bit of the log
+  alias lol="clear; git lola --color=always | head -n 20"
 
   # Include changes into last commit
-  alias yep="git a && git commit --amend --no-edit"
+  alias yep="git a; git commit --amend --no-edit"
 
-  # Undo last commit and move files in commit to staging
-  alias undo="git reset --soft HEAD^"
-
-  # Show the last bit of the git log
-  alias lol="clear && git lola --color=always | head -n 20"
-
-  # Interactive rebase of last n commits
-  alias reb="git rebase -i HEAD~8"
-
-  # never push force
+  # Use the force, but never push force
   alias please="git push --force-with-lease"
 
-  # Reset local branch to matching remote
+  # Drop changes, including newly created files
+  alias nah="git reset --hard; git clean -df"
+
+  # Reset local branch to matching remote branch
   alias drop="git reset --hard @{upstream}"
+
+  # Rebase local branch over matching remote branch
+  alias fwd="git rebase -i @{upstream}"
+
+  # Switch back and forth between last branches
+  alias pop="git switch -"
+
+  # Rebase over last branch
+  alias reb="git rebase -i -"
+
+  # Undo last commit but leave files for diff
+  alias undo="git reset --soft HEAD^ && git reset HEAD --"
 
 
 ## Node
@@ -77,10 +86,6 @@
 
 ## Utilities
 
-  # Open current folder in Sublime or VSCode
-  alias s='subl .'
-  alias c='code .'
-
   # Quickly get ip
   alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
@@ -98,4 +103,12 @@
 
   # sudo apt-get install tldr
   alias man="tldr"
+
+
+## Terminal color scheme
+
+  # https://mayccoll.github.io/Gogh/
+  # 03 08 11 13 17 18 29 32 35 51 54 66 67 69 90 93 96
+  # 104 109 110 111 112 114 122 136 138 142 144 147 152
+  alias colorscheme='bash -c "$(wget -qO- https://git.io/vQgMr)"'
 

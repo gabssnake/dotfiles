@@ -1,0 +1,4 @@
+reporter: "spec"
+no-exit: true
+bail: true
+

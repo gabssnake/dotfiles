@@ -3,5 +3,9 @@
 node_modules
 .vagrant/
 *.log
-/home/gvivas/src/smc/webserver/config/dev/
+.npmrc
+
+# SMC
+# webserver/config/dev/unified-config.xml
+# webui/workspace.json
 

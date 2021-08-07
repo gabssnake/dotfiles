@@ -14,7 +14,7 @@ blue="\e[0;34m";
 cyan="\e[0;36m";
 reset="\e[0m";
 PS1=""
-PS1+="\[${cyan}\]\u@\h ";                 # User and Host
+PS1+="\[${cyan}\]\u ";                    # User (Host is always the same)
 PS1+="\[${blue}\]\w";                     # Working directory
 PS1+="\[${green}\]\$(parse_git_branch)";  # Git branch if any
 PS1+="\[${blue}\] $ ";                    # Dollar prompt
@@ -22,7 +22,8 @@ PS1+="\[${reset}\]";                      # Reset color
 export PS1;
 
 # Editor
-export GIT_EDITOR="subl --wait --new-window"
+# Use VIM by default
+# export GIT_EDITOR="subl --wait --new-window"
 
 # Prefer US English and use UTF-8
 export LANG='en_US.UTF-8'
@@ -53,6 +54,8 @@ export NODE_REPL_HISTORY_SIZE='32768'
 # Autocompletion
 source ~/.git-completion.bash 2> /dev/null
 source ~/.npm-completion.bash 2> /dev/null
+source ~/.node-completion.bash 2> /dev/null
+source ~/.alacritty-completion.bash 2> /dev/null
 
 # Aliases
 source ~/.bash_aliases 2> /dev/null
@@ -77,7 +80,7 @@ if [ -d "$HOME/.cowfiles" ] ; then
 fi
 
 # Rust
-#export PATH="$HOME/.cargo/bin:$PATH"
-
+#
 
 export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
