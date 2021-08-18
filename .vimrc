@@ -1,15 +1,14 @@
-
 " Automatically install vim-plug and missing plugins, hurts startup time
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
+"if empty(glob('~/.vim/autoload/plug.vim'))
+    "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"endif
 
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall --sync | source $MYVIMRC
-\| endif
+"autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    "\| PlugInstall --sync | source $MYVIMRC
+"\| endif
 
 
 call plug#begin('~/.vim/plugged')
@@ -17,48 +16,48 @@ call plug#begin('~/.vim/plugged')
   " Fuzzy search all the things.
   " requires: cargo install --locked ripgrep
   " requires: cargo install --locked bat
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+  "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  "Plug 'junegunn/fzf.vim'
 
   " LSP support for autocompletion, signature help, linting, and more.
+  " Requires `nodejs` `npm`
   " requires: :CocInstall coc-tsserver coc-eslint coc-prettier
   " requires: :CocInstall coc-json coc-html coc-css
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " Text editing 
-  Plug 'sheerun/vim-polyglot' " Syntax support for most languages
-  Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
-  Plug 'tpope/vim-surround'   " Quotes, parenthesis
+  "Plug 'sheerun/vim-polyglot' " Syntax support for most languages
+  "Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
+  "Plug 'tpope/vim-surround'   " Quotes, parenthesis
 
   " Gotta have colors: https://vimcolorschemes.com/
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'embark-theme/vim', { 'as': 'embark' }
-  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-  Plug 'bluz71/vim-nightfly-guicolors'
-  Plug 'morhetz/gruvbox'
-  Plug 'ghifarit53/tokyonight-vim'
-  Plug 'sainnhe/everforest'
-  Plug 'franbach/miramare'
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'Rigellute/shades-of-purple.vim'
-  Plug 'Rigellute/rigel'
-  Plug 'mhartington/oceanic-next'
-  Plug 'bcicen/vim-vice'
-  Plug 'flrnd/candid.vim'
-  Plug 'wadackel/vim-dogrun'
-  Plug 'yassinebridi/vim-purpura'
-  Plug 'wojciechkepka/bogster'
-  Plug 'archseer/colibri.vim'
-  Plug 'relastle/bluewery.vim'
-  Plug 'Nequo/vim-allomancer'
-  Plug 'cseelus/vim-colors-tone'
-  Plug 'matveyt/vim-modest'
-  Plug 'kadekillary/skull-vim'
-  Plug 'kwsp/halcyon-neovim'
+  " Plug 'dracula/vim', { 'as': 'dracula' }
+  " Plug 'embark-theme/vim', { 'as': 'embark' }
+  " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+  " Plug 'bluz71/vim-nightfly-guicolors'
+  " Plug 'morhetz/gruvbox'
+  " Plug 'ghifarit53/tokyonight-vim'
+  " Plug 'sainnhe/everforest'
+  " Plug 'franbach/miramare'
+  " Plug 'arcticicestudio/nord-vim'
+  " Plug 'Rigellute/shades-of-purple.vim'
+  " Plug 'Rigellute/rigel'
+  " Plug 'mhartington/oceanic-next'
+  " Plug 'bcicen/vim-vice'
+  " Plug 'flrnd/candid.vim'
+  " Plug 'wadackel/vim-dogrun'
+  " Plug 'yassinebridi/vim-purpura'
+  " Plug 'wojciechkepka/bogster'
+  " Plug 'archseer/colibri.vim'
+  " Plug 'relastle/bluewery.vim'
+  " Plug 'Nequo/vim-allomancer'
+  " Plug 'cseelus/vim-colors-tone'
+  " Plug 'matveyt/vim-modest'
+  " Plug 'kadekillary/skull-vim'
+  " Plug 'kwsp/halcyon-neovim'
 
 call plug#end()
-
 
 
 " Mappings
@@ -67,34 +66,41 @@ call plug#end()
   let g:netrw_banner = 0                 " Cleaner explorer
   let g:netrw_liststyle = 3              " Explorer tree view by default
 
-  nmap <leader>p :Files!<cr>
-  nmap <leader>i :Rg! 
-  nmap <leader>b :Buffers<cr>
-  nmap <leader>g :GFiles!<cr>
-  nmap <leader>f :CocCommand eslint.executeAutofix<cr> " Eslint fix format
+  "nmap <leader>p :Files!<cr>
+  "nmap <leader>i :Rg! 
+  "nmap <leader>b :Buffers<cr>
+  "nmap <leader>g :GFiles!<cr>
+  "nmap <leader>f :CocCommand eslint.executeAutofix<cr>
   nmap <leader>e :Explore<cr>
+
+  " Switch to alternate file
   nmap <leader>a :e #<cr>
+
+  " Wipeout (close) buffer
   nmap <leader>w :bw<cr>
 
   " Toggle line numbers
   nmap <leader>l :set invnumber<cr>
 
-  " Hard-wired memory for saving
-  nmap <leader>s :w<cr>
-
   " Clear search results when clearing screen
   nnoremap <c-l> :nohlsearch<cr><c-l>
+
+  " Force write file with `sudo`
+  noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 
 " Basic settings
 
   " Small break with the past
-  set nocompatible                       " Disables compatibility with 'vi'
+  set nocompatible                       " Better Vim
   set nobackup noswapfile                " Live dangerously and dont leave traces
-  set backspace=indent,eol,start         " Make backspace friendly
+  set backspace=indent,eol,start         " Allow backspace in insert mode
   set encoding=utf8                      " Set utf8 as standard encoding
   set ffs=unix,dos,mac                   " Use Unix as the standard file type
   set hidden                             " Allow hidden buffers even unsaved
+  set clipboard=unnamed                  " Use the OS clipboard by default (`+clipboard)
+  set ttyfast                            " Optimize for fast terminal connections
+  set scrolloff=3                        " Start scrolling three lines before
 
   " Command autocompletion
   set wildmenu                           " Most useful tab selection
@@ -130,7 +136,7 @@ call plug#end()
   " Color scheme
   syntax on                              " Required
   set termguicolors                      " 24-bit color when possible
-  colorscheme palenight                  " Chosen colors, e.g. elford
+  colorscheme palenight                  " Chosen colors, e.g. elflord, palenight
 
   " Cleanup for status line
   set noshowmode                         " Dont show mode automatically

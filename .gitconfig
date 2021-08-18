@@ -1,52 +1,53 @@
 [user]
-	name = Gabriel VIVAS
-	email = gabriel.vivas@stormshield.eu
+  name = gabssnake
+  email = gabssnake@gmail.com
 
 [core]
-    editor = vim
-    excludesfile = ~/.gitignore_global
+  editor = vim
+  excludesfile = ~/.gitignore
 
 [color]
-    branch = auto
-    diff = auto
-    grep = always
-    interactive = auto
-    status = auto
-    ui = auto
+  branch = auto
+  diff = auto
+  grep = always
+  interactive = auto
+  status = auto
+  ui = auto
 
 [credential]
-	helper = cache
+  helper = cache
 
 [push]
-    default = current
-    followTags = true
+  default = current
+  followTags = true
 
 [alias]
-    staged = diff --staged
-    unstage = reset HEAD --
-    s = status -sb
-    ss = status -sb
-    sss = status -sb
-    a = add -A :/
-    p = add -p
-    c = commit -m
-    lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  staged = diff --staged
+  unstage = reset HEAD --
+  s = status -sb
+  ss = status -sb
+  sss = status -sb
+  a = add -A :/
+  p = add -p
+  c = commit -m
+  lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 
 [apply]
-    whitespace = nowarn
+  whitespace = nowarn
 
 [diff]
-    submodule = log
-	colorMoved = default
+  submodule = log
+  colorMoved = default
 
 [status]
-    submoduleSummary = true
-    showUntrackedFiles = all
+  submoduleSummary = true
+  showUntrackedFiles = all
 
 [help]
-    autocorrect = 1
+  autocorrect = 1
 
 [pull]
-   rebase = true
+  rebase = true
+
 [rerere]
-	enabled = true
+  enabled = true

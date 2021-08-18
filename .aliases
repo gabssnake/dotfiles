@@ -2,26 +2,21 @@
 
 ## Bash
 
-  # -G show colors
+  # -l long format
+  # -A show dot files without ./ and ../
+  # -h adds human readable dates
   # -p add a slash to folders
   # -F adds more flags to other files
-  # -h adds human readable dates
   #  disable temporalily with \ls
-  alias ls='ls -laGpFh'
+  alias ls='ls -lAhpF'
 
-  # Avoid common mistakes
+  # Common mistakes
   alias cd..='cd ..'
   alias pnig='ping'
   alias gti='git'
 
-  # -i prompts confirmation
-  # -v verbose mode
-  # alias rm='rm -iv'
-  # alias mv='mv -iv'
-  # alias cp='cp -iv'
-
   # Quick sudo
-  alias fuck='sudo $(history -p \!\!)'
+  #alias fuck='sudo $(history -p \!\!)'
 
   # Always enable colored `grep` output
   alias grep='grep --color=auto'
@@ -30,12 +25,9 @@
 ## Git
 
   # Files most frequently modified
-  alias churn="git log --pretty='format:' --name-only \
-    | grep -v ^$ | sort | uniq -c \
-    | sed -e 's/^ *//' | sort -rg | head -n 30"
-
-  # Don't judge me
-  alias s="git status -sb"
+  #alias churn="git log --pretty='format:' --name-only \
+    #| grep -v ^$ | sort | uniq -c \
+    #| sed -e 's/^ *//' | sort -rg | head -n 30"
 
   # Show the last bit of the log
   alias lol="clear; git lola --color=always | head -n 20"
@@ -52,9 +44,6 @@
   # Reset local branch to matching remote branch
   alias drop="git reset --hard @{upstream}"
 
-  # Rebase local branch over matching remote branch
-  alias fwd="git rebase -i @{upstream}"
-
   # Switch back and forth between last branches
   alias pop="git switch -"
 
@@ -66,43 +55,33 @@
 
 
 ## Node
-  alias r="npm run"
 
   # Show global modules
   alias npmls="npm list -g --depth=0"
 
   # Remove modules for a clean install
-  alias prune="rm -rf node_modules && rm -f package-lock.json"
-
-  # Bootstrap quick project folder
-  alias init='git init && \
-    cat ~/.gitignore_global >> .gitignore && \
-    echo "package-lock.json -diff" >> .gitattributes && \
-    npm init -y && \
-    npm i --save dotenv debug && \
-    echo "require(\"dotenv\").config();" >> index.js && \
-    echo "DEBUG=*" >> .env'
+  #alias npmprune="rm -rf node_modules && rm -f package-lock.json"
 
 
 ## Utilities
 
-  # Quickly get ip
-  alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-
   # Print each PATH entry on a separate line
   alias path='echo -e ${PATH//:/\\n}'
 
+  # Quickly get ip
+  #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+
   # Http static server
-  alias serve="python -m SimpleHTTPServer 8000"
+  #alias serve="python -m SimpleHTTPServer 8000"
 
   # Record terminal with python3 lib
-  alias record='termtosvg --theme dracula'
+  #alias record='termtosvg --theme dracula'
 
   # npm -g install localtunnel
-  alias localtunnel='lt'
+  #alias localtunnel='lt'
 
   # sudo apt-get install tldr
-  alias man="tldr"
+  #alias man="tldr"
 
 
 ## Terminal color scheme

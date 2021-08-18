@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# get current git branch
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# Named colors for readability
+green="\e[0;32m";
+blue="\e[0;34m";
+cyan="\e[0;36m";
+reset="\e[0m";
+
+# e.g. `gab@dev ~/src/dotfiles (master) $ `
+PS1=""
+PS1+="\[${cyan}\]\u ";                    # User 
+PS1+="\[${blue}\]\w";                     # Working directory
+PS1+="\[${green}\]\$(parse_git_branch)";  # Git branch if any
+PS1+="\[${blue}\] $ ";                    # Dollar prompt
+PS1+="\[${reset}\]";                      # Reset color
+
+# Use our custom prompt
+export PS1;
+
+# apt-get install fortune cowsay
+# npm install --global lolcat
+if [ -d "$HOME/.cowfiles" ] ; then
+    export COWPATH="/usr/share/cowsay/cows/:$HOME/.cowfiles"
+    fortune -as | cowsay -f dakota | lolcat
+fi
+
