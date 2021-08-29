@@ -1,6 +1,6 @@
 [user]
-  name = gabssnake
-  email = gabssnake@gmail.com
+	name = gabssnake
+	email = gabssnake@gmail.com
 
 [core]
   editor = vim
@@ -15,21 +15,17 @@
   ui = auto
 
 [credential]
-  helper = cache
+	helper = cache
 
 [push]
   default = current
   followTags = true
 
 [alias]
-  staged = diff --staged
-  unstage = reset HEAD --
   s = status -sb
-  ss = status -sb
-  sss = status -sb
   a = add -A :/
-  p = add -p
   c = commit -m
+  unstage = reset HEAD --
   lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 
 [apply]
@@ -51,3 +47,6 @@
 
 [rerere]
   enabled = true
+
+[includeIf "gitdir:~/src/smc/"]
+  path = ~/.workrc.gitconfig

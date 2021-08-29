@@ -3,7 +3,7 @@
 ## Bash
 
   # -l long format
-  # -A show dot files without ./ and ../
+  # -A show dot files (without ./ and ../)
   # -h adds human readable dates
   # -p add a slash to folders
   # -F adds more flags to other files
@@ -15,79 +15,59 @@
   alias pnig='ping'
   alias gti='git'
 
-  # Quick sudo
-  #alias fuck='sudo $(history -p \!\!)'
-
-  # Always enable colored `grep` output
-  alias grep='grep --color=auto'
+  # Print each PATH entry on a separate line
+  alias path='echo -e ${PATH//:/\\n}'
 
 
 ## Git
 
-  # Files most frequently modified
-  #alias churn="git log --pretty='format:' --name-only \
-    #| grep -v ^$ | sort | uniq -c \
-    #| sed -e 's/^ *//' | sort -rg | head -n 30"
-
   # Show the last bit of the log
-  alias lol="clear; git lola --color=always | head -n 20"
+  alias lol='clear; git lola --color=always | head -n 20'
 
   # Include changes into last commit
-  alias yep="git a; git commit --amend --no-edit"
+  alias yep='git a; git commit --amend --no-edit'
 
   # Use the force, but never push force
-  alias please="git push --force-with-lease"
+  alias please='git push --force-with-lease'
 
   # Drop changes, including newly created files
-  alias nah="git reset --hard; git clean -df"
+  alias nah='git reset --hard; git clean -df'
 
   # Reset local branch to matching remote branch
-  alias drop="git reset --hard @{upstream}"
+  alias drop='git reset --hard @{upstream}'
 
   # Switch back and forth between last branches
-  alias pop="git switch -"
+  alias pop='git switch -'
 
   # Rebase over last branch
-  alias reb="git rebase -i -"
+  alias reb='git rebase -i -'
 
-  # Undo last commit but leave files for diff
-  alias undo="git reset --soft HEAD^ && git reset HEAD --"
+  # Undo last commit but leave changes for diff
+  alias undo='git reset --soft HEAD^ && git reset HEAD --'
+
+  # Reinit submodules
+  alias submod='git submodule deinit --all --force && \
+    git submodule update --init --recursive'
 
 
 ## Node
 
   # Show global modules
-  alias npmls="npm list -g --depth=0"
+  alias npmls='npm list -g --depth=0'
 
-  # Remove modules for a clean install
-  #alias npmprune="rm -rf node_modules && rm -f package-lock.json"
+  # Used to run mocha without local config
+  alias mocha='$(npm bin)/mocha --config /home/gvivas/.mocharc'
 
 
 ## Utilities
 
-  # Print each PATH entry on a separate line
-  alias path='echo -e ${PATH//:/\\n}'
-
-  # Quickly get ip
-  #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-  # Http static server
-  #alias serve="python -m SimpleHTTPServer 8000"
-
-  # Record terminal with python3 lib
-  #alias record='termtosvg --theme dracula'
-
-  # npm -g install localtunnel
-  #alias localtunnel='lt'
-
-  # sudo apt-get install tldr
-  #alias man="tldr"
-
-
-## Terminal color scheme
-
+  ## Terminal color scheme
   # https://mayccoll.github.io/Gogh/
   # 03 08 11 13 17 18 29 32 35 51 54 66 67 69 90 93 96
   # 104 109 110 111 112 114 122 136 138 142 144 147 152
   alias colorscheme='bash -c "$(wget -qO- https://git.io/vQgMr)"'
+
+  # pip3 install --user termtosvg
+  # npm -g install localtunnel
+  # sudo apt-get install tldr
 

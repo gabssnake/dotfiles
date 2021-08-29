@@ -1,14 +1,14 @@
 " Automatically install vim-plug and missing plugins, hurts startup time
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 
-"if empty(glob('~/.vim/autoload/plug.vim'))
-    "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"endif
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-"autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    "\| PlugInstall --sync | source $MYVIMRC
-"\| endif
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 
 call plug#begin('~/.vim/plugged')
@@ -16,19 +16,19 @@ call plug#begin('~/.vim/plugged')
   " Fuzzy search all the things.
   " requires: cargo install --locked ripgrep
   " requires: cargo install --locked bat
-  "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  "Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
   " LSP support for autocompletion, signature help, linting, and more.
   " Requires `nodejs` `npm`
   " requires: :CocInstall coc-tsserver coc-eslint coc-prettier
   " requires: :CocInstall coc-json coc-html coc-css
-  "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " Text editing 
-  "Plug 'sheerun/vim-polyglot' " Syntax support for most languages
-  "Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
-  "Plug 'tpope/vim-surround'   " Quotes, parenthesis
+  Plug 'sheerun/vim-polyglot' " Syntax support for most languages
+  Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
+  Plug 'tpope/vim-surround'   " Quotes, parenthesis
 
   " Gotta have colors: https://vimcolorschemes.com/
   Plug 'drewtempelmeyer/palenight.vim'
@@ -66,18 +66,13 @@ call plug#end()
   let g:netrw_banner = 0                 " Cleaner explorer
   let g:netrw_liststyle = 3              " Explorer tree view by default
 
-  "nmap <leader>p :Files!<cr>
-  "nmap <leader>i :Rg! 
-  "nmap <leader>b :Buffers<cr>
-  "nmap <leader>g :GFiles!<cr>
-  "nmap <leader>f :CocCommand eslint.executeAutofix<cr>
-  nmap <leader>e :Explore<cr>
+  " jump to file and quick search
+  nmap <leader>p :Files!<cr>
+  nmap <leader>f :Rg!
+  nmap <leader>b :Buffers<cr>
 
-  " Switch to alternate file
-  nmap <leader>a :e #<cr>
-
-  " Wipeout (close) buffer
-  nmap <leader>w :bw<cr>
+  " ESlint fix format
+  nmap <leader>e :CocCommand eslint.executeAutofix<cr>
 
   " Toggle line numbers
   nmap <leader>l :set invnumber<cr>
@@ -151,8 +146,7 @@ call plug#end()
   set laststatus=2                       " Always show a status line
   set statusline=                        " Always be appending
 
-  " Show modes in different colors.
-  " See :so $VIMRUNTIME/syntax/hitest.vim
+  " Show modes in different colors. See :so $VIMRUNTIME/syntax/hitest.vim
   set statusline+=%#WildMenu#%{mode()==?'n'?'\ \ NORMAL\ ':''}
   set statusline+=%#DiffDelete#%{mode()==?'i'?'\ \ INSERT\ ':''}
   set statusline+=%#DiffDelete#%{mode()==?'r'?'\ \ REPLACE\ ':''}
