@@ -56,7 +56,7 @@
   alias npmls='npm list -g --depth=0'
 
   # Used to run mocha without local config
-  alias mocha='$(npm bin)/mocha --config /home/gvivas/.mocharc'
+  alias mocha='$(npm bin)/mocha --config /home/gvivas/.mocharc.yml'
 
 
 ## Utilities

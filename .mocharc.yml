@@ -1,0 +1,35 @@
+check-leaks: true
+trace-warnings: true
+recursive: true
+reporter: 'spec'
+
+slow: 50
+timeout: 300
+parallel: true
+no-exit: true
+bail: true
+
+watch-ignore:
+  - 'node_modules'
+  - '.git'
+  - 'build'
+  - 'conf'
+  - 'containers'
+  - 'docs'
+  - 'eslint'
+  - 'ganeti'
+  - 'gitlab'
+  - 'grunt'
+  - 'infra'
+  - 'jenkins'
+  - 'qatools'
+  - 'robotframework'
+  - 'rust'
+  - 'scripts'
+  - 'smc-os'
+  - 'static'
+  - 'tools'
+  - 'trainings'
+  - 'webui'
+  - 'wiki'
+
