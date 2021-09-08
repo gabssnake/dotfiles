@@ -63,19 +63,57 @@ call plug#end()
 " Mappings
 
   let mapleader = '\'
+
+
+" FILE NATIGATION
+
+  " jump to file and quick search via zfz
+  nnoremap <c-p> :Files!<cr>
+  nnoremap <c-f> :Rg!
+  nnoremap <leader>p :Files!<cr>
+  nnoremap <leader>f :Rg!
+
+  " Explore file tree, open splits with `v` or `<cr>`
   let g:netrw_banner = 0                 " Cleaner explorer
   let g:netrw_liststyle = 3              " Explorer tree view by default
+  let g:netrw_altv=1                     " Opne splits to the right
+  let g:netrw_browser_split=4            " Open in prior window
+  let g:netrw_list_hide=netrw_gitignore#Hide()
+  let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 
-  " jump to file and quick search
-  nmap <leader>p :Files!<cr>
-  nmap <leader>f :Rg!
-  nmap <leader>b :Buffers<cr>
 
-  " ESlint fix format
-  nmap <leader>e :CocCommand eslint.executeAutofix<cr>
+" BUFFERS AND SPLITS
+
+  " Switch between alternate buffers
+  nnoremap <leader>= <c-^>
+
+  " List and jump to buffer by name or number 
+  " nnoremap <leader>b :buffer <c-z><s-tab>
+  nnoremap <leader>/ :ls<cr>:buffer<space>
+
+  " Cycle through buffers
+  noremap <tab><tab> :bnext<cr>
+  noremap <s-tab><s-tab> :bprev<cr>
+
+  " Vertical split
+  nnoremap <leader>s <c-w><c-v>
+  nnoremap <leader>' <c-w><c-v>
+
+  " Move to left and right split
+  nnoremap <leader>, <c-w><c-h>
+  nnoremap <leader>. <c-w><c-l>
+
+  " Only leave this split opened
+  nnoremap <leader>o :only<cr>
+
+
+" EDITING HELPERS
+
+  " ESlint fix format (lint)
+  nmap <leader>l :CocCommand eslint.executeAutofix<cr>
 
   " Toggle line numbers
-  nmap <leader>l :set invnumber<cr>
+  nmap <leader>n :set invnumber<cr>
 
   " Clear search results when clearing screen
   nnoremap <c-l> :nohlsearch<cr><c-l>
@@ -98,8 +136,9 @@ call plug#end()
   set scrolloff=3                        " Start scrolling three lines before
 
   " Command autocompletion
-  set wildmenu                           " Most useful tab selection
-  set wildmode=list:longest,full         " Like in bash
+  set wildmenu                           " Use autocomplete menu for commands
+  set wildmode=list:longest,full         " Match longest and full filenames
+  set path+=**                           " Search subfolders with `:find`
 
   " Indentation
   set smarttab       " Use shiftwidth value
