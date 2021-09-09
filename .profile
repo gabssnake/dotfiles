@@ -6,6 +6,12 @@ for file in ~/.{prompt,exports,aliases,workrc}; do
 done;
 unset file;
 
+# Use FZF in Bash with Ctrl-T or **. Requires: 'apt-get install fzf'
+if [ -d /usr/share/doc/fzf ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+    source /usr/share/doc/fzf/examples/completion.bash
+fi
+
 # Load completions (bash, git, etc)
 if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion

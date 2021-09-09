@@ -38,3 +38,13 @@ export CLICOLOR=1
   # Allow 32^3 entries, the default is 1000
   export NODE_REPL_HISTORY_SIZE='32768'
 
+
+# PATH
+
+  # Golang
+  export GOROOT=/usr/local/go
+  export PATH="$PATH:/usr/local/go/bin"
+
+  # Rust lang
+  export PATH="$HOME/.cargo/bin:$PATH"
+

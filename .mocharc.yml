@@ -1,35 +1,63 @@
-check-leaks: true
-trace-warnings: true
 recursive: true
 reporter: 'spec'
 
-slow: 50
-timeout: 300
-parallel: true
-no-exit: true
+# Care not for waiting
+slow: 100
+timeout: 500
+fail-zero: true
 bail: true
 
-watch-ignore:
-  - 'node_modules'
-  - '.git'
-  - 'build'
-  - 'conf'
-  - 'containers'
-  - 'docs'
-  - 'eslint'
-  - 'ganeti'
-  - 'gitlab'
-  - 'grunt'
-  - 'infra'
-  - 'jenkins'
-  - 'qatools'
-  - 'robotframework'
-  - 'rust'
-  - 'scripts'
-  - 'smc-os'
-  - 'static'
-  - 'tools'
-  - 'trainings'
-  - 'webui'
-  - 'wiki'
+# Let bad code show its uggly face
+check-leaks: true
+trace-warnings: true
+allow-uncaught: true
+parallel: true
+sort: true
+no-exit: true
 
+ignore:
+  - 'node_modules/**'
+  - '.git/**'
+  - 'build/**'
+  - 'conf/**'
+  - 'containers/**'
+  - 'docs/**'
+  - 'eslint/**'
+  - 'ganeti/**'
+  - 'gitlab/**'
+  - 'grunt/**'
+  - 'infra/**'
+  - 'jenkins/**'
+  - 'qatools/**'
+  - 'robotframework/**'
+  - 'rust/**'
+  - 'scripts/**'
+  - 'smc-os/**'
+  - 'static/**'
+  - 'tools/**'
+  - 'trainings/**'
+  - 'webui/**'
+  - 'wiki/**'
+watch-ignore:
+  - 'node_modules/**'
+  - '.git/**'
+  - 'build/**'
+  - 'conf/**'
+  - 'containers/**'
+  - 'docs/**'
+  - 'eslint/**'
+  - 'ganeti/**'
+  - 'gitlab/**'
+  - 'grunt/**'
+  - 'infra/**'
+  - 'jenkins/**'
+  - 'qatools/**'
+  - 'robotframework/**'
+  - 'rust/**'
+  - 'scripts/**'
+  - 'smc-os/**'
+  - 'static/**'
+  - 'tools/**'
+  - 'trainings/**'
+  - 'webui/**'
+  - 'wiki/**'

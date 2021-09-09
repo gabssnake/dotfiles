@@ -52,14 +52,16 @@
 
 ## Node
 
-  # Show global modules
-  alias npmls='npm list -g --depth=0'
-
   # Used to run mocha without local config
   alias mocha='$(npm bin)/mocha --config /home/gvivas/.mocharc.yml'
 
 
 ## Utilities
+
+  # Show global modules
+  alias npmls='npm list -g --depth=0'
+  alias gols='\ls -p /usr/local/go/bin/ | grep -v "\/\|^go$\|^gofmt$"'
+  alias rustls='\ls -p ~/.cargo/bin/ | grep -v "\/\|rust\|cargo\|clippy"'
 
   ## Terminal color scheme
   # https://mayccoll.github.io/Gogh/

@@ -23,12 +23,16 @@ call plug#begin('~/.vim/plugged')
   " Requires `nodejs` `npm`
   " requires: :CocInstall coc-tsserver coc-eslint coc-prettier
   " requires: :CocInstall coc-json coc-html coc-css
+  " requires: :CocInstall coc-diagnostic
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " Text editing 
   Plug 'sheerun/vim-polyglot' " Syntax support for most languages
   Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
   Plug 'tpope/vim-surround'   " Quotes, parenthesis
+
+  " Shell formatting
+  Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 
   " Gotta have colors: https://vimcolorschemes.com/
   Plug 'drewtempelmeyer/palenight.vim'
@@ -81,6 +85,9 @@ call plug#end()
   let g:netrw_list_hide=netrw_gitignore#Hide()
   let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 
+  " Use spaces instead of default tabs, requires 'z0mbix/vim-shfmt'
+  let g:shfmt_extra_args = '-i 4'
+
 
 " BUFFERS AND SPLITS
 
@@ -97,6 +104,7 @@ call plug#end()
 
   " Vertical split
   nnoremap <leader>s <c-w><c-v>
+  nnoremap <leader>v <c-w><c-v>
   nnoremap <leader>' <c-w><c-v>
 
   " Move to left and right split
@@ -112,6 +120,10 @@ call plug#end()
   " ESlint fix format (lint)
   nmap <leader>l :CocCommand eslint.executeAutofix<cr>
 
+  " Shell formatting. Requires: go install mvdan.cc/sh/v3/cmd/shfmt@latest
+  " nmap <leader>l :!shfmt %
+  " nmap <leader>l :Shfmt
+
   " Toggle line numbers
   nmap <leader>n :set invnumber<cr>
 
@@ -120,6 +132,9 @@ call plug#end()
 
   " Force write file with `sudo`
   noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+  " Remove trailing whitespace on save (.sh and .js only)
+  autocmd BufWritePre .sh,.js * :%s/\s\+$//e
 
 
 " Basic settings
@@ -142,10 +157,9 @@ call plug#end()
 
   " Indentation
   set smarttab       " Use shiftwidth value
-  set shiftwidth=2   " Number of spaces for autoindent
+  set shiftwidth=2   " Number of spaces for 'autoindent'
   set tabstop=2      " Number of spaces for tab key
   set expandtab      " Required when using tabstop and shiftwidth
-  set autoindent     " Use same indent as previous line for next lines
   set smartindent    " Mostly match '{' and '}' indentation
 
   " Line wrap
