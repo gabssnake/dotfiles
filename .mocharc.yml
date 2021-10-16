@@ -2,10 +2,10 @@ recursive: true
 reporter: 'spec'
 
 # Care not for waiting
-slow: 100
-timeout: 500
-fail-zero: true
-bail: true
+# slow: 100
+# timeout: 1000
+# fail-zero: true
+# bail: true
 
 # Let bad code show its uggly face
 check-leaks: true
@@ -13,7 +13,7 @@ trace-warnings: true
 allow-uncaught: true
 parallel: true
 sort: true
-no-exit: true
+exit: true # poor coding
 
 ignore:
   - 'node_modules/**'

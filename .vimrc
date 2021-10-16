@@ -19,54 +19,37 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  " LSP support for autocompletion, signature help, linting, and more.
-  " Requires `nodejs` `npm`
-  " requires: :CocInstall coc-tsserver coc-eslint coc-prettier
-  " requires: :CocInstall coc-json coc-html coc-css
-  " requires: :CocInstall coc-diagnostic
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Async Lining Engine (ALE)
+  Plug 'w0rp/ale'
 
   " Text editing 
   Plug 'sheerun/vim-polyglot' " Syntax support for most languages
   Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
   Plug 'tpope/vim-surround'   " Quotes, parenthesis
 
-  " Shell formatting
-  Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
-
   " Gotta have colors: https://vimcolorschemes.com/
   Plug 'drewtempelmeyer/palenight.vim'
-  " Plug 'dracula/vim', { 'as': 'dracula' }
-  " Plug 'embark-theme/vim', { 'as': 'embark' }
-  " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-  " Plug 'bluz71/vim-nightfly-guicolors'
-  " Plug 'morhetz/gruvbox'
-  " Plug 'ghifarit53/tokyonight-vim'
-  " Plug 'sainnhe/everforest'
-  " Plug 'franbach/miramare'
-  " Plug 'arcticicestudio/nord-vim'
-  " Plug 'Rigellute/shades-of-purple.vim'
-  " Plug 'Rigellute/rigel'
-  " Plug 'mhartington/oceanic-next'
-  " Plug 'bcicen/vim-vice'
-  " Plug 'flrnd/candid.vim'
-  " Plug 'wadackel/vim-dogrun'
-  " Plug 'yassinebridi/vim-purpura'
-  " Plug 'wojciechkepka/bogster'
-  " Plug 'archseer/colibri.vim'
-  " Plug 'relastle/bluewery.vim'
-  " Plug 'Nequo/vim-allomancer'
-  " Plug 'cseelus/vim-colors-tone'
-  " Plug 'matveyt/vim-modest'
-  " Plug 'kadekillary/skull-vim'
-  " Plug 'kwsp/halcyon-neovim'
+  Plug 'bluz71/vim-nightfly-guicolors'
+  Plug 'Rigellute/rigel'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'cseelus/vim-colors-tone'
+  Plug 'bcicen/vim-vice'
+  Plug 'kadekillary/skull-vim'
+  Plug 'embark-theme/vim', { 'as': 'embark' }
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'sainnhe/everforest'
+  Plug 'sainnhe/sonokai'
+  Plug 'Rigellute/shades-of-purple.vim'
 
 call plug#end()
 
 
-" Mappings
+" Basic stuff
 
-  let mapleader = '\'
+  let mapleader = '\'                    " Default, but a reminder
+  nmap , \
+
+  filetype plugin indent on              " Required for some settings below
 
 
 " FILE NATIGATION
@@ -85,11 +68,11 @@ call plug#end()
   let g:netrw_list_hide=netrw_gitignore#Hide()
   let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 
-  " Use spaces instead of default tabs, requires 'z0mbix/vim-shfmt'
-  let g:shfmt_extra_args = '-i 4'
-
 
 " BUFFERS AND SPLITS
+
+  " Equalize split sizes when resizing terminal
+  autocmd VimResized * wincmd =
 
   " Switch between alternate buffers
   nnoremap <leader>= <c-^>
@@ -114,15 +97,67 @@ call plug#end()
   " Only leave this split opened
   nnoremap <leader>o :only<cr>
 
+  " Open file in same folder as current file
+  nnoremap <leader>e :e <c-r>=expand("%:p:h") . "/" <cr>
 
-" EDITING HELPERS
+  " Grep word under cursor
+  "nnoremap <leader>g :grep! '\b<C-R><C-W>\b'<CR>:cw<CR><CR>
 
-  " ESlint fix format (lint)
-  nmap <leader>l :CocCommand eslint.executeAutofix<cr>
+  " Code folding
+  set foldmethod=indent
+  set foldnestmax=10
+  set nofoldenable
+  set foldlevel=2
+
+
+" IDE (LINTING, GOTO, FORMATTING)
+
+  " ALE can use LSP (e.g. tsserver)
+  " npm i -g write-good
+  " npm i -g typescript
+  " npm i -g eslint prettier eslint-plugin-prettier eslint-config-prettier
+
+  " Autocomplete
+  "set omnifunc=syntaxcomplete#Complete   " Complete all languages
+  "set completeopt=longest,menuone       " Insert longest text, show menu even for one
+
+  " Avoids visual jumps
+  set signcolumn=number                  " Sign column and numbers share a column
+  let g:ale_sign_column_always = 1
+
+  " Custom icons for lint errors
+  let g:ale_sign_error = '☛'             " Also: ☛ ⚑ ✖ ● ★ ► ✸ ➽ ◆ ✦ ☗ 🌩 ⛑  
+  let g:ale_sign_warning = '☛' 
+
+  " Linter and fixers
+  let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'javascript': ['prettier', 'eslint']
+    \}
+
+  let g:ale_completion_enabled = 1
+
+  " Go to definition (overwrites ctags mapping)
+  nnoremap <leader>ad :ALEGoToDefinition<cr>
+
+  " Find references
+  nnoremap <leader>ar :ALEFindReferences<cr>
+
+  " Rename refactoring
+  nnoremap <leader>an :ALERename
+
+  " Other refactorings (extract function, etc)
+  nnoremap <leader>aa :ALECodeAction<cr>
+
+  " Format current file
+  nnoremap <leader>af :ALEFix<cr>
 
   " Shell formatting. Requires: go install mvdan.cc/sh/v3/cmd/shfmt@latest
   " nmap <leader>l :!shfmt %
   " nmap <leader>l :Shfmt
+
+
+" EDITING HELPERS
 
   " Toggle line numbers
   nmap <leader>n :set invnumber<cr>
@@ -132,9 +167,6 @@ call plug#end()
 
   " Force write file with `sudo`
   noremap <leader>W :w !sudo tee % > /dev/null<CR>
-
-  " Remove trailing whitespace on save (.sh and .js only)
-  autocmd BufWritePre .sh,.js * :%s/\s\+$//e
 
 
 " Basic settings
@@ -149,10 +181,17 @@ call plug#end()
   set clipboard=unnamed                  " Use the OS clipboard by default (`+clipboard)
   set ttyfast                            " Optimize for fast terminal connections
   set scrolloff=3                        " Start scrolling three lines before
+  set autoread                           " Reload files automatically
+  set visualbell                         " No bell sound
 
-  " Command autocompletion
+  " Color scheme
+  syntax on                              " Required
+  set termguicolors                      " 24-bit color when possible
+  colorscheme embark                     " Chosen colors, e.g. elflord, palenight
+
+  " Autocomplete commands
   set wildmenu                           " Use autocomplete menu for commands
-  set wildmode=list:longest,full         " Match longest and full filenames
+  set wildmode=longest:full,full         " Match longest and full filenames
   set path+=**                           " Search subfolders with `:find`
 
   " Indentation
@@ -165,11 +204,8 @@ call plug#end()
   " Line wrap
   set wrap           " Visually truncate long lines
   set linebreak      " Show long lines with line break
-  set textwidth=90   " Will break lines at given column
+  set textwidth=80   " Will break lines at given column
   set colorcolumn=+1 " Show where it ends
-
-  " Enable file detection, plugins and indent per filetype
-  filetype plugin indent on
 
   " Sensible search
   set incsearch      " Makes search act like search in modern browsers
@@ -181,19 +217,14 @@ call plug#end()
   set showmatch      " Show matching brackets when text indicator is over them
   set matchtime=2    " Tenths of a second to blink when matching brackets
 
-  " Color scheme
-  syntax on                              " Required
-  set termguicolors                      " 24-bit color when possible
-  colorscheme palenight                  " Chosen colors, e.g. elflord, palenight
+
+" Simple status line
 
   " Cleanup for status line
   set noshowmode                         " Dont show mode automatically
   set title                              " Show window title with filename
   set cursorline                         " Highlight cursor line
   set number                             " Line numbers
-
-
-" Simple status line
 
   " Basic setup
   set laststatus=2                       " Always show a status line

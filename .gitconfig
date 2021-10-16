@@ -27,6 +27,7 @@
   c = commit -m
   unstage = reset HEAD --
   lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	shame = blame -w -M -C
 
 [apply]
   whitespace = nowarn
@@ -50,3 +51,6 @@
 
 [includeIf "gitdir:~/src/smc/"]
   path = ~/.workrc.gitconfig
+
+[blame]
+	ignoreRevsFile = /home/gvivas/.git-blame-ignore-revs
