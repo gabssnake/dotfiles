@@ -10,6 +10,9 @@ export LC_ALL='en_US.UTF-8'
 # Use `ls` colors in macOS
 export CLICOLOR=1
 
+# Stop macOS from telling me to use zsh
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 
 # Man pages
 
