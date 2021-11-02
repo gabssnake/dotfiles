@@ -1,8 +1,7 @@
 " Automatically install vim-plug and missing plugins, hurts startup time
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
@@ -10,41 +9,12 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
-
+" Everything is within vim-plug to be able to declare plugins
+" next to relevant configuration and settings. See end of file.
 call plug#begin('~/.vim/plugged')
 
-  " Fuzzy search all the things.
-  " requires: cargo install --locked ripgrep
-  " requires: cargo install --locked bat
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
 
-  " Async Lining Engine (ALE)
-  Plug 'w0rp/ale'
-
-  " Text editing 
-  Plug 'sheerun/vim-polyglot' " Syntax support for most languages
-  Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
-  Plug 'tpope/vim-surround'   " Quotes, parenthesis
-
-  " Gotta have colors: https://vimcolorschemes.com/
-  Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'bluz71/vim-nightfly-guicolors'
-  Plug 'Rigellute/rigel'
-  Plug 'ghifarit53/tokyonight-vim'
-  Plug 'cseelus/vim-colors-tone'
-  Plug 'bcicen/vim-vice'
-  Plug 'kadekillary/skull-vim'
-  Plug 'embark-theme/vim', { 'as': 'embark' }
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'sainnhe/everforest'
-  Plug 'sainnhe/sonokai'
-  Plug 'Rigellute/shades-of-purple.vim'
-
-call plug#end()
-
-
-" Basic stuff
+" BASIC STUFF
 
   let mapleader = '\'                    " Default, but a reminder
   nmap , \
@@ -54,145 +24,134 @@ call plug#end()
 
 " FILE NATIGATION
 
-  " jump to file and quick search via zfz
-  nnoremap <c-p> :Files!<cr>
-  nnoremap <c-f> :Rg!
-  nnoremap <leader>p :Files!<cr>
-  nnoremap <leader>f :Rg!
+  set hidden    " Allow hidden buffers even unsaved
+  set path+=**  " Jump to file with `:find` including subfolders
 
-  " Explore file tree, open splits with `v` or `<cr>`
-  let g:netrw_banner = 0                 " Cleaner explorer
-  let g:netrw_liststyle = 3              " Explorer tree view by default
-  let g:netrw_altv=1                     " Opne splits to the right
-  let g:netrw_browser_split=4            " Open in prior window
-  let g:netrw_list_hide=netrw_gitignore#Hide()
-  let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
-
-
-" BUFFERS AND SPLITS
-
-  " Equalize split sizes when resizing terminal
-  autocmd VimResized * wincmd =
+  " Open file in same folder as current file
+  nnoremap <leader>e :e <c-r>=expand("%:p:h") . "/" <cr>
 
   " Switch between alternate buffers
   nnoremap <leader>= <c-^>
 
-  " List and jump to buffer by name or number 
-  " nnoremap <leader>b :buffer <c-z><s-tab>
+  " List and jump to buffer by name or number
   nnoremap <leader>/ :ls<cr>:buffer<space>
-
-  " Cycle through buffers
-  noremap <tab><tab> :bnext<cr>
-  noremap <s-tab><s-tab> :bprev<cr>
-
-  " Vertical split
-  nnoremap <leader>s <c-w><c-v>
-  nnoremap <leader>v <c-w><c-v>
-  nnoremap <leader>' <c-w><c-v>
 
   " Move to left and right split
   nnoremap <leader>, <c-w><c-h>
   nnoremap <leader>. <c-w><c-l>
 
-  " Only leave this split opened
-  nnoremap <leader>o :only<cr>
+  " jump to file and quick search via (requries zfz plugin)
+  nnoremap <leader>p :Files!<cr>
+  nnoremap <leader>f :Rg!
 
-  " Open file in same folder as current file
-  nnoremap <leader>e :e <c-r>=expand("%:p:h") . "/" <cr>
+  " Equalize split sizes when resizing terminal
+  autocmd VimResized * wincmd =
 
-  " Grep word under cursor
-  "nnoremap <leader>g :grep! '\b<C-R><C-W>\b'<CR>:cw<CR><CR>
-
-  " Code folding
-  set foldmethod=indent
-  set foldnestmax=10
-  set nofoldenable
-  set foldlevel=2
+  " Fuzzy search all the things.
+  " cargo install --locked ripgrep bat
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
 
-" IDE (LINTING, GOTO, FORMATTING)
+" NAVIGATE WITHIN FILES
 
-  " ALE can use LSP (e.g. tsserver)
-  " npm i -g write-good
-  " npm i -g typescript
-  " npm i -g eslint prettier eslint-plugin-prettier eslint-config-prettier
-
-  " Autocomplete
-  "set omnifunc=syntaxcomplete#Complete   " Complete all languages
-  "set completeopt=longest,menuone       " Insert longest text, show menu even for one
-
-  " Avoids visual jumps
-  set signcolumn=number                  " Sign column and numbers share a column
-  let g:ale_sign_column_always = 1
-
-  " Custom icons for lint errors
-  let g:ale_sign_error = '☛'             " Also: ☛ ⚑ ✖ ● ★ ► ✸ ➽ ◆ ✦ ☗ 🌩 ⛑  
-  let g:ale_sign_warning = '☛' 
-
-  " Linter and fixers
-  let g:ale_fixers = {
-    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \ 'javascript': ['prettier', 'eslint']
-    \}
-
-  let g:ale_completion_enabled = 1
-
-  " Go to definition (overwrites ctags mapping)
-  nnoremap <leader>ad :ALEGoToDefinition<cr>
-
-  " Find references
-  nnoremap <leader>ar :ALEFindReferences<cr>
-
-  " Rename refactoring
-  nnoremap <leader>an :ALERename
-
-  " Other refactorings (extract function, etc)
-  nnoremap <leader>aa :ALECodeAction<cr>
-
-  " Format current file
-  nnoremap <leader>af :ALEFix<cr>
-
-  " Shell formatting. Requires: go install mvdan.cc/sh/v3/cmd/shfmt@latest
-  " nmap <leader>l :!shfmt %
-  " nmap <leader>l :Shfmt
-
-
-" EDITING HELPERS
-
-  " Toggle line numbers
-  nmap <leader>n :set invnumber<cr>
+  " Sensible search
+  set incsearch      " Makes search act like search in modern browsers
+  set ignorecase     " Ignore case when searching
+  set smartcase      " But preserve case whenever uppercase is used
+  set hlsearch       " Highlight search results
 
   " Clear search results when clearing screen
   nnoremap <c-l> :nohlsearch<cr><c-l>
 
-  " Force write file with `sudo`
-  noremap <leader>W :w !sudo tee % > /dev/null<CR>
+  " Show all function definitions in the location list
+  nnoremap <leader>j :lvimgrep /function/ % \| lw<cr>
+
+  " Transparently center view on the search result
+  nnoremap n nzz
+  nnoremap N Nzz
 
 
-" Basic settings
+" DISPLAY
 
-  " Small break with the past
-  set nocompatible                       " Better Vim
-  set nobackup noswapfile                " Live dangerously and dont leave traces
-  set backspace=indent,eol,start         " Allow backspace in insert mode
-  set encoding=utf8                      " Set utf8 as standard encoding
-  set ffs=unix,dos,mac                   " Use Unix as the standard file type
-  set hidden                             " Allow hidden buffers even unsaved
-  set clipboard=unnamed                  " Use the OS clipboard by default (`+clipboard)
-  set ttyfast                            " Optimize for fast terminal connections
-  set scrolloff=3                        " Start scrolling three lines before
-  set autoread                           " Reload files automatically
-  set visualbell                         " No bell sound
+  " Line wrap
+  set wrap           " Visually truncate long lines
+  set linebreak      " Show long lines with line break
+  set textwidth=80   " Will break lines at given column
+  set colorcolumn=+1 " Show column where wrap happens
 
-  " Color scheme
+  " Matching parenthesis
+  set showmatch      " Show matching brackets when text indicator is over them
+  set matchtime=2    " Tenths of a second to blink when matching brackets
+
+  " Show whitespace characters
+  set list                               " Enable inviseble chars
+  set listchars=tab:⟼\ ,nbsp:·,trail:·   " Only these ones
+
+  " Toggle line numbers
+  nnoremap <leader>n :set invnumber<cr>
+
+  " Color scheme, e.g. elflord, desert
   syntax on                              " Required
-  set termguicolors                      " 24-bit color when possible
-  colorscheme embark                     " Chosen colors, e.g. elflord, palenight
+  set termguicolors                      " 24-bit when available
+  colorscheme desert                     " Default to a built-in colorscheme
+
+  " Mostly random color
+  function! RandomColor()
+    let l:colors = 'embark palenight nightfly rigel tokyonight
+          \ tone vice skull nord everforest sonokai shades_of_purple'
+    let l:randint = str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
+    execute 'colorscheme ' . split(colors)[randint % len(split(colors))]
+    redraw!
+    colorscheme
+  endfunction
+
+  " For easy access as a command
+  command RandomColor call RandomColor()
+
+  " After plugins are loaded
+  autocmd VimEnter * RandomColor
+
+  " Syntax support for most languages
+  Plug 'sheerun/vim-polyglot'
+
+  " Gotta have colors: https://vimcolorschemes.com/
+  Plug 'embark-theme/vim', { 'as': 'embark' }
+  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'bluz71/vim-nightfly-guicolors'
+  Plug 'Rigellute/rigel'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'cseelus/vim-colors-tone'
+  Plug 'bcicen/vim-vice'
+  Plug 'kadekillary/skull-vim'
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'sainnhe/everforest'
+  Plug 'sainnhe/sonokai'
+  Plug 'Rigellute/shades-of-purple.vim'
+
+
+" EDITING
+
+  set backspace=indent,eol,start         " Allow backspace in insert mode
+  set visualbell                         " No bell sound
+  set scrolloff=3                        " Start scrolling three lines before
+
+  " File opening
+  set encoding=utf8                 " Set utf8 as standard encoding
+  set ffs=unix,dos,mac              " Use Unix as the standard file type
+  set ttyfast                       " Optimize for fast terminal connections
+
+  " Split at bottom and right. Also applies to quickfix preview window.
+  set splitbelow splitright
+
+  " File saving
+  set nobackup noswapfile           " Live dangerously and dont leave traces
+  set confirm                       " Ask for action instead of warning on :q
+  set autoread                      " Reload files automatically
 
   " Autocomplete commands
-  set wildmenu                           " Use autocomplete menu for commands
-  set wildmode=longest:full,full         " Match longest and full filenames
-  set path+=**                           " Search subfolders with `:find`
+  set wildmenu                      " Use autocomplete menu for commands
+  set wildmode=longest:full,full    " Match longest and full filenames
 
   " Indentation
   set smarttab       " Use shiftwidth value
@@ -201,24 +160,68 @@ call plug#end()
   set expandtab      " Required when using tabstop and shiftwidth
   set smartindent    " Mostly match '{' and '}' indentation
 
-  " Line wrap
-  set wrap           " Visually truncate long lines
-  set linebreak      " Show long lines with line break
-  set textwidth=80   " Will break lines at given column
-  set colorcolumn=+1 " Show where it ends
+  " Don't replace tabs with spaces when editing makefiles
+  autocmd Filetype makefile setlocal noexpandtab
 
-  " Sensible search
-  set incsearch      " Makes search act like search in modern browsers
-  set ignorecase     " Ignore case when searching
-  set smartcase      " But preserve case whenever uppercase is used
-  set hlsearch       " Highlight search results
+  " Force write file with `sudo`
+  noremap <leader>w :w !sudo tee % > /dev/null<CR>
 
-  " Matching parenthesis, etc
-  set showmatch      " Show matching brackets when text indicator is over them
-  set matchtime=2    " Tenths of a second to blink when matching brackets
+  " Delete trailing whitespace on save
+  autocmd BufWritePre * :%s/\s\+$//ge
+
+  " Delete whitespace at end of file on save
+  autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
+
+  " Copy/Paste to system clipboard
+  " Check support with: `vim --version | grep .xterm_clipboard -o`
+  " `sudo apt-get install vim-gtk3` or `sudo apt-get install vim-gui-common`
+  noremap <c-c> "+y<cr>
+  noremap <c-p> "+p<cr>
+
+  " Text editing
+  Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
+  Plug 'tpope/vim-surround'   " Quotes, parenthesis
+
+  " Git additions/deletions signs in the gutter
+  Plug 'airblade/vim-gitgutter'
+  let g:gitgutter_sign_allow_clobber = 0
+  let g:gitgutter_sign_modified = '✦'
+
+  " Avoid bad habits (might be frustrating!)
+  Plug 'takac/vim-hardtime'
+  let g:hardtime_default_on = 1
 
 
-" Simple status line
+" LANGUAGE SERVER
+
+  " Autocompletion
+  let g:ale_completion_enabled = 1
+
+  " Lint and fix
+  set signcolumn=number              " Sign column and numbers share a column
+  let g:ale_sign_column_always = 1   " Avoid visual jumps with permanent column
+  let g:ale_sign_error = '☛'         " Also: ☛ ⚑ ✖ ● ★ ► ✸ ➽ ◆ ✦ ☗ 🌩 ⛑
+  let g:ale_sign_warning = '☛'
+  let g:ale_fix_on_save = 1
+  let g:ale_fixers = {
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'json': ['prettier', 'eslint'],
+    \}
+
+  " Format current file
+  nnoremap <leader>af :ALEFix<cr>
+
+  " Go to definition (overwrites ctags mapping)
+  nnoremap <leader>ad :ALEGoToDefinition<cr>
+
+  " Find references
+  nnoremap <leader>ar :ALEFindReferences<cr>
+
+  " Async Lining Engine (ALE)
+  Plug 'dense-analysis/ale'
+
+
+" STATUSLINE
 
   " Cleanup for status line
   set noshowmode                         " Dont show mode automatically
@@ -250,3 +253,5 @@ call plug#end()
   set statusline+=%#WildMenu#            " Color
   set statusline+=\ %l,%v\ %LL\          " Line number, column, total lines
 
+
+call plug#end()
