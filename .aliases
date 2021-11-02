@@ -58,6 +58,13 @@
   alias mocha='$(npm bin)/mocha --config /home/gvivas/.mocharc.yml'
 
 
+## Docker
+
+  # Show `docker ps` as a vertical table (takes less horizontal space)
+  export DOCKER_VFMT="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
+  alias dps='docker ps --format="${DOCKER_VFMT}"'
+
+
 ## Utilities
 
   # Show global modules

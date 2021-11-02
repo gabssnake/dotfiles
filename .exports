@@ -16,11 +16,17 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Man pages
 
-  # Highlight section titles in manual pages
-  export LESS_TERMCAP_md="${yellow}"
+  # Setup less pager for man pages
+  # -X      Don't clear screen after quitting a man page
+  # -s      Squeeze/consolidate blank lines
+  # -M +Gg  Additional info (i.e. percentage)
+  # https://stackoverflow.com/a/19871578/1585841
+  export MANPAGER='less -s -M -X +Gg'
 
-  # Don’t clear the screen after quitting a manual page
-  export MANPAGER='less -X'
+  # Highlight section titles in manual pages
+  # https://unix.stackexchange.com/a/108840/272465
+  yellow=$'\E[01;33m'
+  export LESS_TERMCAP_md="${yellow}"
 
 
 # History
@@ -36,7 +42,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Node REPL
 
   # Enable persistent REPL history
-  export NODE_REPL_HISTORY='~/.node_history'
+  export NODE_REPL_HISTORY="${HOME}/.node_history"
 
   # Allow 32^3 entries, the default is 1000
   export NODE_REPL_HISTORY_SIZE='32768'
@@ -45,7 +51,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # PATH
 
   # Golang
-  export GOROOT=/usr/local/go
+  export GOROOT='/usr/local/go'
   export PATH="$PATH:/usr/local/go/bin"
 
   # Rust lang

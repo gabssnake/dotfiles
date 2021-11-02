@@ -53,4 +53,4 @@
   path = ~/.workrc.gitconfig
 
 [blame]
-	ignoreRevsFile = /home/gvivas/.git-blame-ignore-revs
+	ignoreRevsFile = /home/gvivas/src/smc/.revsignore
