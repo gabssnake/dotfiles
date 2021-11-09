@@ -17,8 +17,6 @@ call plug#begin('~/.vim/plugged')
 " BASIC STUFF
 
   let mapleader = '\'                    " Default, but a reminder
-  nmap , \
-
   filetype plugin indent on              " Required for some settings below
 
 
@@ -40,10 +38,6 @@ call plug#begin('~/.vim/plugged')
   nnoremap <leader>, <c-w><c-h>
   nnoremap <leader>. <c-w><c-l>
 
-  " jump to file and quick search via (requries zfz plugin)
-  nnoremap <leader>p :Files!<cr>
-  nnoremap <leader>f :Rg!
-
   " Equalize split sizes when resizing terminal
   autocmd VimResized * wincmd =
 
@@ -51,6 +45,10 @@ call plug#begin('~/.vim/plugged')
   " cargo install --locked ripgrep bat
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+
+    " jump to file and quick search via (requries zfz plugin)
+    nnoremap <leader>p :Files!<cr>
+    nnoremap <leader>f :Rg!
 
 
 " NAVIGATE WITHIN FILES
@@ -71,6 +69,10 @@ call plug#begin('~/.vim/plugged')
   nnoremap n nzz
   nnoremap N Nzz
 
+  " Move between multi-line paragraphs as if they were actual lines
+  nnoremap j gj
+  nnoremap k gk
+
 
 " DISPLAY
 
@@ -85,7 +87,7 @@ call plug#begin('~/.vim/plugged')
   set matchtime=2    " Tenths of a second to blink when matching brackets
 
   " Show whitespace characters
-  set list                               " Enable inviseble chars
+  set list                               " Enable invisible chars
   set listchars=tab:⟼\ ,nbsp:·,trail:·   " Only these ones
 
   " Toggle line numbers
@@ -96,24 +98,32 @@ call plug#begin('~/.vim/plugged')
   set termguicolors                      " 24-bit when available
   colorscheme desert                     " Default to a built-in colorscheme
 
-  " Mostly random color
-  function! RandomColor()
-    let l:colors = 'embark palenight nightfly rigel tokyonight
-          \ tone vice skull nord everforest sonokai shades_of_purple'
-    let l:randint = str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
-    execute 'colorscheme ' . split(colors)[randint % len(split(colors))]
-    redraw!
-    colorscheme
-  endfunction
-
-  " For easy access as a command
-  command RandomColor call RandomColor()
-
-  " After plugins are loaded
-  autocmd VimEnter * RandomColor
-
   " Syntax support for most languages
   Plug 'sheerun/vim-polyglot'
+
+  " See mapping git above
+  Plug 'tpope/vim-fugitive'
+
+    " Show blame split for file. `A` authors, `D` dates
+    nnoremap <leader>b :Git blame<cr>
+
+    " Explore file history in quickfix window
+    nnoremap <leader>h :0Gclog!<cr>
+
+  " Distraction free-mode
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
+
+    " Some extra space for numbers, linting, etc.
+    let g:goyo_width = &textwidth + 10
+
+    " Use both plugins together
+    autocmd! User GoyoEnter Limelight
+    autocmd! User GoyoLeave Limelight!
+
+    " Easier usage
+    command Focus Goyo
+    nnoremap <leader>o :Focus<cr>
 
   " Gotta have colors: https://vimcolorschemes.com/
   Plug 'embark-theme/vim', { 'as': 'embark' }
@@ -128,6 +138,23 @@ call plug#begin('~/.vim/plugged')
   Plug 'sainnhe/everforest'
   Plug 'sainnhe/sonokai'
   Plug 'Rigellute/shades-of-purple.vim'
+
+    " After plugins are loaded
+    autocmd VimEnter * RandomColor
+
+    " Change colors as we change clothes
+    command RandomColor call RandomColor()
+    nnoremap <leader>z :RandomColor<cr>
+
+    " Mostly random color
+    function! RandomColor()
+      let l:colors = 'embark palenight nightfly rigel tokyonight
+            \ tone vice skull nord everforest sonokai shades_of_purple'
+      let l:randint = str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
+      execute 'colorscheme ' . split(colors)[randint % len(split(colors))]
+      redraw!
+      colorscheme
+    endfunction
 
 
 " EDITING
@@ -170,55 +197,70 @@ call plug#begin('~/.vim/plugged')
   autocmd BufWritePre * :%s/\s\+$//ge
 
   " Delete whitespace at end of file on save
-  autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
+  " autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
 
   " Copy/Paste to system clipboard
   " Check support with: `vim --version | grep .xterm_clipboard -o`
   " `sudo apt-get install vim-gtk3` or `sudo apt-get install vim-gui-common`
-  noremap <c-c> "+y<cr>
-  noremap <c-p> "+p<cr>
+  " noremap <leader>cc "+y<cr>
+  " noremap <leader>pp "+p<cr>
 
-  " Text editing
-  Plug 'tpope/vim-commentary' " Toggle comments, 'gcc' in normal, 'gc' in visual
-  Plug 'tpope/vim-surround'   " Quotes, parenthesis
+  " Navigate quicklist: [q and ]q, [Q first, ]Q last
+  " Location list: [l and ]l, [L first, ]L last
+  " Changing buffers: [b and ]b, [B first, ]B last
+  " Swap lines: [e and ]e
+  " Insert empty line: [<space> and ]<space>
+  Plug 'tpope/vim-unimpaired'
+
+  " gcc to toggle comment in normal mode
+  " gc to toggle comment in visual mode
+  Plug 'tpope/vim-commentary'
+
+  " ys<text-object> to add sourrounding. e.g. ysiw" (surround in quotes)
+  " cs<before><after> to swap surrounding. e.g. cs'" (from ' to " quotes)
+  Plug 'tpope/vim-surround'
 
   " Git additions/deletions signs in the gutter
   Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_sign_allow_clobber = 0
-  let g:gitgutter_sign_modified = '✦'
+
+    let g:gitgutter_sign_allow_clobber = 0
+    let g:gitgutter_sign_modified = '✦'
 
   " Avoid bad habits (might be frustrating!)
   Plug 'takac/vim-hardtime'
-  let g:hardtime_default_on = 1
+
+    let g:hardtime_default_on = 0
 
 
 " LANGUAGE SERVER
 
-  " Autocompletion
-  let g:ale_completion_enabled = 1
-
-  " Lint and fix
-  set signcolumn=number              " Sign column and numbers share a column
-  let g:ale_sign_column_always = 1   " Avoid visual jumps with permanent column
-  let g:ale_sign_error = '☛'         " Also: ☛ ⚑ ✖ ● ★ ► ✸ ➽ ◆ ✦ ☗ 🌩 ⛑
-  let g:ale_sign_warning = '☛'
-  let g:ale_fix_on_save = 1
-  let g:ale_fixers = {
-    \ 'javascript': ['prettier', 'eslint'],
-    \ 'json': ['prettier', 'eslint'],
-    \}
-
-  " Format current file
-  nnoremap <leader>af :ALEFix<cr>
-
-  " Go to definition (overwrites ctags mapping)
-  nnoremap <leader>ad :ALEGoToDefinition<cr>
-
-  " Find references
-  nnoremap <leader>ar :ALEFindReferences<cr>
-
   " Async Lining Engine (ALE)
   Plug 'dense-analysis/ale'
+
+    " Autocompletion
+    let g:ale_completion_enabled = 1
+
+    " Lint and fix
+    set signcolumn=number            " Sign column and numbers share a column
+    let g:ale_sign_column_always = 1 " Avoid visual jumps with permanent column
+    let g:ale_sign_error = '☛'       " Also: ☛ ⚑ ✖ ● ★ ► ✸ ➽ ◆ ✦ ☗ 🌩
+    let g:ale_sign_warning = '☛'
+    let g:ale_fixers = {
+      \ 'javascript': ['prettier', 'eslint'],
+      \ 'json': ['prettier', 'eslint'],
+      \}
+
+    " Format current file
+    nnoremap <leader>af :ALEFix<cr>
+
+    " Go to definition (overwrites ctags mapping)
+    nnoremap <leader>ad :ALEGoToDefinition<cr>
+
+    " Find references
+    nnoremap <leader>ar :ALEFindReferences<cr>
+
+    " Next warning
+    nnoremap <leader>an :ALENext<cr>
 
 
 " STATUSLINE

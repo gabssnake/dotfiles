@@ -38,6 +38,9 @@
   # Reset local branch to matching remote branch
   alias drop='git reset --hard @{upstream}'
 
+  # When you forget to push with `-u`
+  alias predrop='git branch --set-upstream-to=origin/$(git rev-parse --abbrev-ref HEAD)'
+
   # Switch back and forth between last branches
   alias pop='git switch -'
 
@@ -48,8 +51,7 @@
   alias undo='git reset --soft HEAD^ && git reset HEAD --'
 
   # Reinit submodules
-  alias submod='git submodule deinit --all --force && \
-    git submodule update --init --recursive'
+  alias submod='git submodule deinit --all --force && git submodule update --init --recursive'
 
 
 ## Node
@@ -81,4 +83,3 @@
   # pip3 install --user termtosvg
   # npm -g install localtunnel
   # sudo apt-get install tldr
-
