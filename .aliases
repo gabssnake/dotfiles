@@ -53,6 +53,10 @@
   # Reinit submodules
   alias submod='git submodule deinit --all --force && git submodule update --init --recursive'
 
+  # Expects a commit hash to be fixup
+  # Later: git rebase -i --autosquash
+  alias fixup='git commit -a --fixup'
+
 
 ## Node
 
