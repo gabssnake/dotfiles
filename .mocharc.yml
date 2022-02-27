@@ -6,12 +6,10 @@ reporter: 'spec'
 # timeout: 1000
 # fail-zero: true
 # bail: true
+# allow-uncaught: true
 
 # Let bad code show its uggly face
 check-leaks: true
-trace-warnings: true
-allow-uncaught: true
 parallel: true
 sort: true
 exit: true # poor coding
-
