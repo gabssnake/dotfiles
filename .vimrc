@@ -49,6 +49,9 @@
   " File history in quickfix window (fugitive plugin)
   nnoremap <leader>h :0Gclog!<cr>
 
+  " Show git stage then use `-` to add/remove and `=` to open/close
+  nnoremap <leader>h :0G<cr>
+
   " Enter focus mode (goyo and limelight plugin)
   nnoremap <leader>o :Focus<cr>
 
@@ -58,14 +61,14 @@
   " Required for some settings
   filetype plugin indent on
 
-  " Clear search results when clearing screen
-  nnoremap <c-l> :nohlsearch<cr><c-l>
-
-  " Equalize split sizes when resizing terminal
-  autocmd VimResized * wincmd =
-
   " Common mistake to try :W expecting :w (probably dangerous)
   cnoreabbrev W w
+
+  " Common mistake to enter Ex mode by typying Q in nmode, Ex mode is evil
+  nnoremap Q q
+
+  " Clear search results when clearing screen
+  nnoremap <c-l> :nohlsearch<cr><c-l>
 
   " Reselect visual selecting after indent
   vnoremap < <gv
@@ -80,7 +83,10 @@
   nnoremap k gk
 
   " Open file with `gf` even when it does not exist
-  map gf :edit <cfile><cr>
+  nnoremap gf :edit <cfile><cr>
+
+  " Equalize split sizes when resizing terminal
+  autocmd VimResized * wincmd =
 
   " Delete trailing whitespace on save
   autocmd BufWritePre * :%s/\s\+$//ge
@@ -123,7 +129,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
-    let g:goyo_width = &textwidth + 10
+    let g:goyo_width = 90
     autocmd! User GoyoEnter Limelight
     autocmd! User GoyoLeave Limelight!
     command Focus Goyo
@@ -159,7 +165,7 @@ call plug#end()
   " Color scheme, e.g. elflord, desert
   syntax on                              " Required
   set termguicolors                      " 24-bit color when available
-  colorscheme desert                     " Default to a built-in colorscheme
+  colorscheme aylin                      " See .vim/colors
 
   " Basic editing
   set backspace=indent,eol,start         " Allow backspace in insert mode
@@ -228,7 +234,7 @@ call plug#end()
 " COLORS
 
 " Different color each time vim runs
-autocmd VimEnter * RandomColor
+" autocmd VimEnter * RandomColor
 
 " Mostly random color
 command RandomColor call RandomColor()
