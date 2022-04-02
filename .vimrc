@@ -1,5 +1,11 @@
 " https://github.com/gabssnake/dotfiles
-" .vimrc
+
+" Autoinstall VimPlug and plugins if missing
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 
 " LEADER MAPPINGS
@@ -165,7 +171,7 @@ call plug#end()
   " Color scheme, e.g. elflord, desert
   syntax on                              " Required
   set termguicolors                      " 24-bit color when available
-  colorscheme aylin                      " See .vim/colors
+  colorscheme challenger-deep            " See .vim/colors
 
   " Basic editing
   set backspace=indent,eol,start         " Allow backspace in insert mode
