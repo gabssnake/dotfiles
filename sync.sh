@@ -56,7 +56,7 @@ function main {
   opts=(); while :; do if [[ $1 == -?* ]]; then opts+=("$1"); else break; fi; shift; done
 
   # expects to be run from the dotfiles repo
-  dir=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+  dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
   for opt in "${opts[@]}"; do
     case "$opt" in
