@@ -71,6 +71,9 @@
 
 ## Utilities
 
+  # See: https://github.com/adriancooney/Taskfile
+  alias task=./Taskfile
+
   # Show global modules
   alias npmls='npm list -g --depth=0'
   alias gols='\ls -p /usr/local/go/bin/ | grep -v "\/\|^go$\|^gofmt$"'

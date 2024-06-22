@@ -40,3 +40,13 @@ fi
 # http://git.io/n-install-repo
 export N_PREFIX="$HOME/n";
 [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+# Rust cargo
+. "$HOME/.cargo/env"
+
+# Deno
+export DENO_INSTALL="/Users/gabriel.vivas/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Python pipx
+export PATH="$PATH:/Users/gabriel.vivas/.local/bin"

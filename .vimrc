@@ -95,10 +95,10 @@ endif
   autocmd VimResized * wincmd =
 
   " Delete trailing whitespace on save
-  autocmd BufWritePre * :%s/\s\+$//ge
+  " autocmd BufWritePre * :%s/\s\+$//ge
 
   " Delete whitespace at end of file on save
-  autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
+  " autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
 
   " Don't replace tabs with spaces when editing makefiles
   autocmd Filetype makefile setlocal noexpandtab
@@ -117,7 +117,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
 
   Plug 'airblade/vim-gitgutter'
-    let g:gitgutter_sign_allow_clobber = 0
+    let g:gitgutter_sign_allow_clobber = 1
     let g:gitgutter_sign_modified = '✦'
 
   Plug 'takac/vim-hardtime'
@@ -125,7 +125,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'dense-analysis/ale'
     let g:ale_completion_enabled = 1
-    let g:ale_sign_column_always = 1   " Avoid visual jumps with permanent column
+    let g:ale_sign_column_always = 1   " Avoid visual jumps (permanent column)
     let g:ale_sign_error = '☛'         " Also: ☛ ⚑ ✖ ● ★ ► ✸ ➽ ◆ ✦ ☗ 🌩
     let g:ale_sign_warning = '☛'
     let g:ale_fixers = {

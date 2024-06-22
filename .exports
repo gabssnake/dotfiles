@@ -48,6 +48,11 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
   export NODE_REPL_HISTORY_SIZE='32768'
 
 
+# Deno with TLS proxies
+
+  export DENO_TLS_CA_STORE="system"
+
+
 # PATH
 
   # Golang
@@ -56,4 +61,23 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
   # Rust lang
   export PATH="$HOME/.cargo/bin:$PATH"
+
+  # Brew python
+  #export PATH="/opt/homebrew/opt/python@3.9/libexec/bin:$PATH"
+
+  # macOS python3
+  export PATH="/Users/gabriel.vivas/Library/Python/3.9/bin:$PATH"
+
+  # subl command
+  export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
+  # Java blah blah
+  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+  export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+  # Groovy groovy
+  export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
+
+  # My bin helpers
+  export PATH="$HOME/.bin:$PATH"
 

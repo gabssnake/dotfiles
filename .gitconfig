@@ -27,7 +27,7 @@
   c = commit -m
   unstage = reset HEAD --
   lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	shame = blame -w -M -C
+  shame = blame -w -M -C
 
 [apply]
   whitespace = nowarn
@@ -49,8 +49,18 @@
 [rerere]
   enabled = true
 
-[includeIf "gitdir:~/src/smc/"]
-  path = ~/.workrc.gitconfig
+[init]
+  defaultBranch = main
 
-[blame]
-	ignoreRevsFile = ~/.revsignore
+[merge]
+  renameLimit = 10000
+
+; [includeIf "gitdir:~/src/smc/"]
+  ; path = ~/.workrc.gitconfig
+
+; [blame]
+  ; ignoreRevsFile = ~/.revsignore
+[user]
+	; name = Gabriel Vivas
+	name = gabssnake
+	email = gabssnake@gmail.com
