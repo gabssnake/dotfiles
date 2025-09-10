@@ -50,3 +50,9 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Python pipx
 export PATH="$PATH:/Users/gabriel.vivas/.local/bin"
+. "/Users/gabriel.vivas/.deno/env"
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
+export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"

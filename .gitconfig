@@ -16,9 +16,10 @@
 
 [credential]
 	helper = cache
+	; helper = osxkeychain
 
 [push]
-	default = current
+  default = current
   followTags = true
 
 [alias]

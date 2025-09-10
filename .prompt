@@ -12,11 +12,12 @@ cyan="\e[0;36m";
 reset="\e[0m";
 
 # e.g. `gab@dev ~/src/dotfiles (master) $ `
-PS1=""
+PS1="\n"
 PS1+="\[${cyan}\]\u ";                    # User 
 PS1+="\[${blue}\]\w";                     # Working directory
 PS1+="\[${green}\]\$(parse_git_branch)";  # Git branch if any
-PS1+="\[${blue}\] $ ";                    # Dollar prompt
+PS1+="\n";                                # More space for commands
+PS1+="\[${blue}\]$ ";                    # Dollar prompt
 PS1+="\[${reset}\]";                      # Reset color
 
 # Use our custom prompt

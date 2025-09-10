@@ -81,3 +81,12 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
   # My bin helpers
   export PATH="$HOME/.bin:$PATH"
 
+  # Java
+  export JAVA_HOME=/opt/homebrew/opt/openjdk
+
+
+  # Shitty man in the middle
+  export NODE_EXTRA_CA_CERTS=~/.certs/Sonar-FGT-FW-TLS-Traffic-Inspection.cer
+  export DENO_TLS_CA_STORE=system
+
+
