@@ -1,77 +1,50 @@
 
-# Ask for the administrator password upfront
-sudo -v
+# SSH keys
+# eval "$(ssh-agent -s)" && ssh-add --apple-use-keychain ~/.ssh/<identity>
+
+# Essential dotfiles
+# git clone git@github.com:gabssnake/dotfiles.git
+# cd dotfiles
+# ./sync.sh --install
 
 # Homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew tap caskroom/cask
-brew tap caskroom/versions
-
-brew install brew-cask
-
-brew cask install spectacle
-brew cask install caffeine
-brew cask install the-unarchiver
-brew cask install mplayerx
-brew cask install cheatsheet
-brew cask install spotify
-
-brew cask install iterm2
-brew cask install sublime-text
-brew cask install visual-studio-code
-brew cask install macdown
-brew cask install google-chrome
-brew cask install firefox-developer-edition
-brew cask install vagrant
-brew cask install virtualbox
-brew cask install virtualbox-extension-pack
-brew cask install wireshark
-brew cask install cyberduck
-brew cask install transmission
-brew cast install appcleaner
-
-brew install n
-sudo n tls
-
-
-# macOS comes with Bash 3.2, Brew gives us Bash 5
+# macOS comes with bash 3.2, brew has 5.3.3
 brew install bash
-brew install bash-completion2
+brew install bash-completion@2
 
-# GNU core utilities that come with macOS are outdated
-brew install coreutils
-
-# Install more recent versions of some macOS tools.
-brew install vim #--with-override-system-vi
-brew install gnu-sed #--with-default-names
-brew install wget #--with-iri
-brew install grep
-brew install telnet
-brew install nmap
-brew install ack
-brew install tldr
-brew install cowsay
-brew install fortune
-
+# macOS comes with git 2.39.5, brew has 2.51.0
 brew install git
 brew install git-lfs
 git lfs install
 
-# NTFS read/write
-brew cask install osxfuse
-brew install ntfs-3g
+# More recent versions of some GNU tools
+brew install coreutils
+brew install grep
+brew install gnu-sed
+brew install vim
+brew install ack
+brew install telnet
+brew install wget
 
-# Restart computer with CMD + R => ouvrir un terminal via Utilitaires > Terminal
-# csrutil disable
-# Restart computer normally
-# csrutil status
-# If properly disabled run
-# sudo mv /sbin/mount_ntfs /sbin/mount_ntfs.original
-# sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
-# Restart computer with CMD + R
-# csrutil enable
+# Node.js version management
+# Needs N_PREFIX=$HOME/n set in dotfiles to avoid sudo
+brew install n
+n tls
 
+# Once Sublime is installed, add basic packages
+# 	Tools > Install Package Control
+# 	Cmd + Shift + p > Install new package > AdvancedNewFile
+# 	Cmd + Shift + p > Install new package > SideBarEnhancements
+brew install --cask sublime-text
+
+# Too lazy to download app manually
+brew install --cask iterm2
+brew install --cask spotify
+brew install --cask visual-studio-code
+brew install --cask firefox@developer-edition
+brew install --cask google-chrome
 
 # Remove outdated versions from the cellar
 brew cleanup
