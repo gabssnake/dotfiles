@@ -2,8 +2,6 @@
 .DS_Store
 node_modules
 .env
-*.log
-.vagrant/
-.sencha
+.log
 .scannerwork
 .cache

@@ -22,11 +22,3 @@ PS1+="\[${reset}\]";                      # Reset color
 
 # Use our custom prompt
 export PS1;
-
-# apt-get install fortune cowsay
-# npm install --global lolcat
-if [ -d "$HOME/.cowfiles" ] ; then
-    export COWPATH="/usr/share/cowsay/cows/:$HOME/.cowfiles"
-    fortune -as | cowsay -f dakota | lolcat
-fi
-

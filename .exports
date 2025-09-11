@@ -39,7 +39,11 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
   export HISTCONTROL='ignoreboth'
 
 
-# Node REPL
+# Node
+
+  # Install with brew, still this is needed to avoid sudo
+  export N_PREFIX="$HOME/n";
+  [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
   # Enable persistent REPL history
   export NODE_REPL_HISTORY="${HOME}/.node_history"
@@ -48,45 +52,10 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
   export NODE_REPL_HISTORY_SIZE='32768'
 
 
-# Deno with TLS proxies
+# Brew
 
-  export DENO_TLS_CA_STORE="system"
-
-
-# PATH
-
-  # Golang
-  export GOROOT='/usr/local/go'
-  export PATH="$PATH:/usr/local/go/bin"
-
-  # Rust lang
-  export PATH="$HOME/.cargo/bin:$PATH"
-
-  # Brew python
-  #export PATH="/opt/homebrew/opt/python@3.9/libexec/bin:$PATH"
-
-  # macOS python3
-  export PATH="/Users/gabriel.vivas/Library/Python/3.9/bin:$PATH"
-
-  # subl command
-  export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-
-  # Java blah blah
-  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-  export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
-
-  # Groovy groovy
-  export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
-
-  # My bin helpers
-  export PATH="$HOME/.bin:$PATH"
-
-  # Java
-  export JAVA_HOME=/opt/homebrew/opt/openjdk
-
-
-  # Shitty man in the middle
-  export NODE_EXTRA_CA_CERTS=~/.certs/Sonar-FGT-FW-TLS-Traffic-Inspection.cer
-  export DENO_TLS_CA_STORE=system
-
+  # Use GNU tools instead of macOS older versions
+  export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+  export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+  export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 

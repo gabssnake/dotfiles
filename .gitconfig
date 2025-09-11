@@ -1,6 +1,6 @@
 [user]
-	name = gabssnake
-	email = gabssnake@gmail.com
+  name = gabssnake
+  email = gabssnake@gmail.com
 
 [core]
   editor = vim
@@ -15,8 +15,7 @@
   ui = auto
 
 [credential]
-	helper = cache
-	; helper = osxkeychain
+  helper = cache
 
 [push]
   default = current
@@ -26,9 +25,7 @@
   s = status -sb
   a = add -A :/
   c = commit -m
-  unstage = reset HEAD --
   lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  shame = blame -w -M -C
 
 [apply]
   whitespace = nowarn
@@ -56,12 +53,6 @@
 [merge]
   renameLimit = 10000
 
-; [includeIf "gitdir:~/src/smc/"]
-  ; path = ~/.workrc.gitconfig
-
-; [blame]
-  ; ignoreRevsFile = ~/.revsignore
 [user]
-	; name = Gabriel Vivas
-	name = gabssnake
-	email = gabssnake@gmail.com
+  name = gabssnake
+  email = gabssnake@gmail.com

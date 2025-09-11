@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# New folders have to be created manually
+# /!\ New folders have to be created first /!\
 fileset=(
   .aliases
   .bashrc
@@ -9,32 +9,29 @@ fileset=(
   .gitconfig
   .gitignore
   .hushlogin
-  .mocharc
   .profile
   .prompt
   .vimrc
   .vim/colors/
-  # Legacy files
-  .bash_profile
-  .bash_aliases
-  .gitignore_global
-  .npm-completion.bash
-  .node-completion.bash
-  .git-completion.bash
-  .mocharc.yml
 )
 
 function sync {
   read -p "From '$1' to '$2'. Proceed? (y/n) " -r -n 1;
   printf '\n'
+
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     trash="/tmp/dotfiles-trash-$(date +%F-%s)"
     mkdir -p "$trash" 2>/dev/null
+
+    # Ensure folders exist
+    mkdir -p ~/.vim/colors/ 2>/dev/null
+
     for filename in "${fileset[@]}"; do
       printf '  %s\n' "$filename"
       mv "$2/$filename" "$trash" 2>/dev/null
       cp -r "$1/$filename" "$2/$filename" 2>/dev/null
     done
+
     printf 'Done.\n'
   else
     printf 'Aborted.\n'
