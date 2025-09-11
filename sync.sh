@@ -5,6 +5,7 @@ fileset=(
   .aliases
   .bashrc
   .exports
+  .finicky.js
   .gitconfig
   .gitignore
   .hushlogin
