@@ -58,4 +58,5 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
   export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+  export HOMEBREW_NO_ENV_HINTS=1
 

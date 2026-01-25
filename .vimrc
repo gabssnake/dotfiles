@@ -56,7 +56,7 @@ endif
   nnoremap <leader>h :0Gclog!<cr>
 
   " Show git stage then use `-` to add/remove and `=` to open/close
-  nnoremap <leader>h :0G<cr>
+  nnoremap <leader>g :0G<cr>
 
   " Enter focus mode (goyo and limelight plugin)
   nnoremap <leader>o :Focus<cr>

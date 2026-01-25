@@ -8,7 +8,7 @@
   # -p add a slash to folders
   # -F adds more flags to other files
   #  disable temporalily with \ls
-  alias ls='ls -lAhpF'
+  alias ls='ls -lAhpF --group-directories-first'
 
   # Common mistakes
   alias cd..='cd ..'
@@ -43,7 +43,7 @@
   alias undo='git reset --soft HEAD^ && git reset HEAD --'
 
   # Useful when you change your mind
-  alias unstage='reset HEAD --'
+  alias unstage='git reset HEAD --'
 
   # Nice blame formatting expects a file or path
   alias shame='git blame -w -M -C'
@@ -54,4 +54,23 @@
   # Expects a commit hash to be fixup
   # Later: git rebase -i --autosquash
   alias fixup='git commit -a --fixup'
+
+  # working on code-quality-competition
+  alias again="rm -r data/* && git checkout -- data/ static/"
+
+# Other stuff
+
+  # gpt-oss in terminal
+  alias llm='npx -y node-llama-cpp chat --prompt "Hi there" hf:giladgd/gpt-oss-20b-GGUF/gpt-oss-20b.MXFP4.gguf'
+
+  alias yolo='claude --dangerously-skip-permissions'
+
+  alias vic='vi ~/.claude/CLAUDE.md'
+
+  alias c='claude'
+
+  alias serve='python3 -m http.server 8000'
+
+  # For conveniently opening, e.g. html files
+  alias island='open -a Island'
 

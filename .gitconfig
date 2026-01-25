@@ -52,7 +52,3 @@
 
 [merge]
   renameLimit = 10000
-
-[user]
-  name = gabssnake
-  email = gabssnake@gmail.com

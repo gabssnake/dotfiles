@@ -6,7 +6,7 @@ for file in ~/.{prompt,exports,aliases,workrc}; do
 done;
 unset file;
 
-# Brew path
+# On mac, load brew path
 if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
