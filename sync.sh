@@ -4,6 +4,8 @@
 fileset=(
   .aliases
   .bashrc
+  .claude/CLAUDE.md
+  .claude/commands/
   .exports
   .finicky.js
   .gitconfig
@@ -25,6 +27,7 @@ function sync {
     mkdir -p "$trash" 2>/dev/null
 
     # Ensure folders exist
+    mkdir -p ~/.claude/commands/ 2>/dev/null
     mkdir -p ~/.vim/colors/ 2>/dev/null
 
     for filename in "${fileset[@]}"; do
