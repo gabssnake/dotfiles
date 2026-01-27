@@ -1,0 +1,5 @@
+# Most of the time I know what I'm doing (famous last words)
+# SC2155 (warning): Declare and assign separately to avoid masking return values
+
+disable=SC2155
+
