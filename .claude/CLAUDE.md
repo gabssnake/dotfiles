@@ -38,6 +38,7 @@ Reference The Elements of Style and On Writing Well:
 - Stable tech: Bash, jq, Node.js, vanilla JS/HTML/CSS
 - CDN libraries over build tooling
 - Comments: explain "why" only when non-obvious, start lowercase
+- After editing JS/TS files, run /sonarx to check for issues
 
 # Pull Requests
 
