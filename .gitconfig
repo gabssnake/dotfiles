@@ -52,3 +52,5 @@
 
 [merge]
   renameLimit = 10000
+[advice]
+	skippedCherryPicks = false
