@@ -58,6 +58,9 @@
   # working on code-quality-competition
   alias again="rm -r data/* && git checkout -- data/ static/"
 
+  # call like `scope feature/branchie" to see list of files involved
+  alias scope="git diff --name-only"
+
 # Other stuff
 
   # gpt-oss in terminal

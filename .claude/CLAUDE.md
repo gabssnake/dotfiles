@@ -5,6 +5,8 @@ Be direct, concise, factual. Structure: premise → analysis → conclusion.
 For suggestions and decisions, offer tradeoffs, implications, and counter
 arguments.
 
+Don't ask me run run some commands, jusr run them directly.
+
 Avoid: emojis, bold/italic, images (unless requested).
 
 # Evidence
