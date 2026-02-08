@@ -8,6 +8,7 @@ module.exports = {
     {
       browser: "Island",
       match: [
+        "forms.gle",
         "mixpanel.com",
         "metabaseapp.com",
         "claude.com",

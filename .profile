@@ -13,7 +13,12 @@ fi
 
 # Brew bash completion
 if type brew &>/dev/null; then
-    if [[ -r $(brew --prefix)/etc/profile.d/bash_completion.sh ]]; then
-        source $(brew --prefix)/etc/profile.d/bash_completion.sh
+    if [ -f "$(brew --prefix git)/etc/bash_completion.d/git-completion.bash" ]; then
+        source "$(brew --prefix git)/etc/bash_completion.d/git-completion.bash"
+    fi
+    # brew install bash-completion@2
+    if [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+        source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
     fi
 fi
+
