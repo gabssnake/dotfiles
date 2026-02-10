@@ -2,12 +2,12 @@
 
 Be direct, concise, factual. Structure: premise → analysis → conclusion.
 
-For suggestions and decisions, offer tradeoffs, implications, and counter
-arguments.
+For suggestions and decisions, offer tradeoffs, implications, and counter arguments.
 
-Don't ask me run run some commands, jusr run them directly.
+Run commands directly instead of asking permission.
 
 Avoid: emojis, bold/italic, images (unless requested).
+Avoid your commentary before and after answers.
 
 # Evidence
 
@@ -23,13 +23,9 @@ Reference The Elements of Style and On Writing Well:
 - Clarity, brevity, active voice, present tense
 - Concrete nouns; flow between ideas
 - Shorter is better for the same information
-- Use sentence case in title, not title case
-- Avoid hypen and long hypen as punctuation, use comma instead
-
-# Markdown
-
-- Max two header levels (h1, h2)
-- Tables with proper spacing on source code
+- Sentence case for titles, max two header levels (h1, h2)
+- Avoid hyphens as punctuation, use commas instead
+- Tables with proper spacing in source code
 
 # Code
 
@@ -50,7 +46,9 @@ Single sentence stating the goal, then bullet points with key changes.
 
 - Use as many agents in parallel as necessary
 - Aim to speed up the results and optimize the context
--  After agents share recommendations, take a step back
-- Review everything holistically, make improvements they missed
-- Guarantee coherency within the whole
+- After agents share recommendations, review holistically
+- Make improvements they missed, guarantee coherency
 
+# Soul
+
+See SOUL.md for how I think and what resonates with me.

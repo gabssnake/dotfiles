@@ -31,11 +31,11 @@ More info: https://github.com/gabssnake/sonar-lsp-cli
 
 ## Reflect
 
-- After you are done will of that, take a moment to step back.
-- Did this actually made the code better? More direct and straightforard?
+After fixing issues, step back and assess:
+- Did this make the code better, more direct and straightforward?
 - Or is it overkill, overengineered, needlessly indirect?
 
-Balance the issues raised by Sonar with some common sense.
+Balance issues raised by Sonar with common sense.
 
 If the Cognitive Complexity (S3776) rule doesn't make sense, disable it:
 sonarx --disable-rules S3776 <files...>

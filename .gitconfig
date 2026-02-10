@@ -20,6 +20,7 @@
 [push]
   default = current
   followTags = true
+	useForceIfIncludes = true
 
 [alias]
   s = status -sb

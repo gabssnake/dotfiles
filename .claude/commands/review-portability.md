@@ -38,8 +38,8 @@ Check that scripts follow these practices:
 - Requirements check function that verifies: node, node_modules, any other tools
 - Clear error messages with fix suggestions
 - Proper exit codes (non-zero on failure)
-- Functions wrapped in `main()` pattern
-- Usage comment header
+- Wrap cohesive chunks of code into functions and use a `main()` function to init
+- Usage comment header with relevant example
 
 ## Node.js setup
 

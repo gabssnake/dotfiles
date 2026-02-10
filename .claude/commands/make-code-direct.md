@@ -10,11 +10,10 @@ Review this code for directness and simplicity. Look for:
 - Variables or functions that exist only to be used once
 - Conditionals that can be simplified or eliminated
 - Loops that could be replaced with built-in methods
-- Sometimes things can be made more direct by inlining logic instead of passing
-    stuff around which adds indirection
+- Logic that could be inlined instead of passed around
 
-Make the changes directly, don't just recommend. Favor readability over brevity when they conflict, but remove genuinely redundant code.
+Make changes directly. Favor readability over brevity when they conflict, but remove genuinely redundant code.
 
-If multiple files need review, use parallel agents to process them concurrently.
+Use parallel agents for multiple files.
 
 $ARGUMENTS

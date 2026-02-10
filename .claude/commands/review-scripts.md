@@ -1,25 +1,24 @@
 ---
 description: Critical review of scripts for simplicity and minimalism
-allowed-tools: Read, Edit, Write, Glob, Grep, Bash
+allowed-tools: Read, Glob, Grep, Bash, Task
 ---
 
-Step back and do a critical review of the scripts in this project. Focus on both Bash and JavaScript files.
+Review Bash and JavaScript scripts in this project.
 
-Understand how the scripts work together, then assess:
-- Opportunities to make things more straightforward and simpler
-- Unnecessary code that can be removed
-- Logic that can be consolidated without sacrificing clarity
-- Over-engineering (abstractions, utilities, helpers that don't pay off)
-- Unnecessary dependencies or complexity
+Understand how scripts work together, then assess:
+- Opportunities to simplify
+- Unnecessary code to remove
+- Logic that can be consolidated
+- Over-engineering (abstractions, utilities that don't pay off)
+- Unnecessary dependencies
 
 Guidelines:
-- Prefer plain and minimal implementations
-- Accept some duplication over premature abstraction (DRY-ness vs decoupling tradeoff)
+- Prefer plain, minimal implementations
+- Accept some duplication over premature abstraction
 - Keep things decoupled and extensible
-- Each script should be understandable on its own when reasonable
 - Built-in solutions over external dependencies
 
 Use parallel agents to review different scripts concurrently.
-Don't make the changes directly, let's review the options together.
+Don't make changes directly, present options for review.
 
 $ARGUMENTS
