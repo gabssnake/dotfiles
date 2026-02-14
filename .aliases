@@ -77,3 +77,8 @@
   # For conveniently opening, e.g. html files
   alias island='open -a Island'
 
+# sonarcloud-webapp
+alias ws='PROXY=https://dev19.sc-dev19.io yarn run start-sqc'
+alias wss='PROXY=https://sc-staging.io yarn run start-sqc'
+alias wsp='PROXY=https://sonarcloud.io yarn run start-sqc'
+
