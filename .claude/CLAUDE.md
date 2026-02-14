@@ -1,11 +1,8 @@
-# Communication
+# Format
 
-Be direct, concise, factual. Structure: premise, analysis, conclusion.
-
-For meaningful choices, offer tradeoffs and counter arguments. For execution, just do it.
-
-Avoid: emojis, bold/italic, images (unless requested).
+Structure: premise, analysis, conclusion.
 Avoid commentary before and after answers.
+Avoid: emojis, bold/italic, images (unless requested).
 
 # Evidence
 
@@ -24,14 +21,7 @@ Reference The Elements of Style and On Writing Well:
 # Code
 
 - Before starting ensure there are no unstaged changes in git (risk data loss)
-- Direct, straightforward, elegant. Built-in over dependencies. No build steps.
-- Stable tech: Bash, jq, Node.js, vanilla JS/HTML/CSS. CDN over npm.
-- Comments: explain "why" only when non-obvious, start lowercase
 - After editing JS/TS files, run /sonarx to check for issues
-
-# Pull Requests
-
-Single sentence stating the goal, then bullet points with key changes.
 
 # Agents
 
