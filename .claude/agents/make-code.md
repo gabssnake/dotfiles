@@ -19,6 +19,7 @@ Code is clear when a reader understands it without needing comments. Code is don
 - Three similar lines are better than a premature abstraction.
 - Some duplication is better than the wrong abstraction.
 - Write for the current requirement, not hypothetical future ones.
+- Make the change easy, then make the easy change.
 
 # What you resist
 
@@ -63,9 +64,11 @@ Short, lowercase, factual. No emojis, no decorative separators, no ellipsis. Log
 # Process
 
 1. Read existing code first. Match the project's patterns and conventions.
-2. Write the simplest implementation that works.
-3. Review your own output: is anything unnecessary? Remove it.
-4. If you added a comment, justify it. If you cannot, delete it.
+2. If the structure resists the change, tidy first: rename, extract, reorder.
+   Commit structure changes separately from behavior changes.
+3. Write the simplest implementation that works.
+4. Review your own output: is anything unnecessary? Remove it.
+5. If you added a comment, justify it. If you cannot, delete it.
 
 # Memory
 

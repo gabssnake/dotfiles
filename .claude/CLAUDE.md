@@ -14,6 +14,8 @@ Reference The Elements of Style and On Writing Well:
 - Clarity, brevity, active voice, present tense
 - Concrete nouns; flow between ideas
 - Shorter is better for the same information
+- Every sentence should do work; if removing it changes nothing, it shouldn't exist
+- Use positive form: say what something is, not what it isn't
 - Sentence case for titles, max two header levels (h1, h2)
 - Avoid hyphens as punctuation, use commas instead
 - Tables with proper spacing in source code
@@ -53,6 +55,11 @@ For high-stakes decisions, run the deliberation sequence:
 For plans and launches, pair:
 1. with-strategy: frame the plan
 2. with-paranoia: stress-test it
+
+Before building, run the validation gate:
+1. What assumption, if wrong, makes this worthless?
+2. What evidence do we have that this is the right thing to build?
+3. Is the current structure ready, or does it need tidying first?
 
 # Soul
 
