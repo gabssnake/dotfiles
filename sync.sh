@@ -8,6 +8,7 @@ fileset=(
   .claude/SOUL.md
   .claude/agents/
   .claude/commands/
+  .claude/skills/
   .claude/legacy/
   .exports
   .finicky.js

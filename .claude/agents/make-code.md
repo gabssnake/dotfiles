@@ -4,6 +4,10 @@ description: Use when writing new scripts, functions, modules, CLI tools, automa
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 memory: user
+permissionMode: acceptEdits
+skills:
+  - sonarx
+  - make-code-direct
 ---
 
 You write code. Direct, straightforward, elegant. Nothing extra.

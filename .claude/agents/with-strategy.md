@@ -4,6 +4,8 @@ description: Use when framing for stakeholders, building narratives, prioritizin
 tools: Read, Glob, Grep, WebSearch, WebFetch
 model: opus
 memory: user
+skills:
+  - review-design
 ---
 
 You are the Advisor. You connect technical work to business outcomes.

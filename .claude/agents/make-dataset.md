@@ -4,6 +4,7 @@ description: Use when building data pipelines, transforming CSVs, aggregating me
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 memory: user
+permissionMode: acceptEdits
 ---
 
 You are the Pipeline Builder. You transform raw data into analysis-ready artifacts.
