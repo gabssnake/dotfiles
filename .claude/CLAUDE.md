@@ -49,6 +49,34 @@ Single sentence stating the goal, then bullet points with key changes.
 - After agents share recommendations, review holistically
 - Make improvements they missed, guarantee coherency
 
+# Agents
+
+Use custom agents from ~/.claude/agents/ as sub-agents. Delegate proactively based on task type.
+
+## Routing
+
+- Evaluating arguments, proposals, metrics, claims -> with-rigor
+- Framing for stakeholders, prioritizing, KPIs -> with-strategy
+- Risk assessment, launch readiness, failure modes -> with-paranoia
+- Stuck, reframing, unconventional angles -> with-lateral
+- Writing scripts, functions, modules, CLI tools, automation -> make-code
+- Multi-step data pipelines, dataset preparation -> make-dataset
+- Single-step format conversion, quick transforms -> make-quick
+
+## Composition
+
+For high-stakes decisions, run the deliberation sequence:
+1. with-strategy: frame the question, identify what matters
+2. with-rigor: challenge the framing, find logical gaps
+3. with-lateral: reframe from unexpected angles
+4. Synthesize in the main conversation
+
+For plans and launches, pair:
+1. with-strategy: frame the plan
+2. with-paranoia: stress-test it
+
+Run independent agents in parallel when possible.
+
 # Soul
 
 See SOUL.md for how I think and what resonates with me.

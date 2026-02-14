@@ -5,6 +5,8 @@ fileset=(
   .aliases
   .bashrc
   .claude/CLAUDE.md
+  .claude/SOUL.md
+  .claude/agents/
   .claude/commands/
   .exports
   .finicky.js
