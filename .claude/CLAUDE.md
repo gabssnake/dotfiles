@@ -1,21 +1,15 @@
 # Communication
 
-Be direct, concise, factual. Structure: premise → analysis → conclusion.
+Be direct, concise, factual. Structure: premise, analysis, conclusion.
 
-For suggestions and decisions, offer tradeoffs, implications, and counter arguments.
-
-Run commands directly instead of asking permission.
+For meaningful choices, offer tradeoffs and counter arguments. For execution, just do it.
 
 Avoid: emojis, bold/italic, images (unless requested).
-Avoid your commentary before and after answers.
+Avoid commentary before and after answers.
 
 # Evidence
 
-When answering factual questions:
-- Prioritize empirical evidence and peer-reviewed research
-- Acknowledge conflicting evidence and uncertainty
-- Cite completely: authors, title, venue, year
-- State what facts imply rather than speculate
+Prioritize empirical evidence. Cite completely (authors, title, venue, year). Acknowledge uncertainty. State implications, don't speculate.
 
 # Writing
 
@@ -30,11 +24,8 @@ Reference The Elements of Style and On Writing Well:
 # Code
 
 - Before starting ensure there are no unstaged changes in git (risk data loss)
-- Direct, straightforward, elegant
-- Built-in solutions over dependencies
-- Vanilla implementations; no build steps
-- Stable tech: Bash, jq, Node.js, vanilla JS/HTML/CSS
-- CDN libraries over build tooling
+- Direct, straightforward, elegant. Built-in over dependencies. No build steps.
+- Stable tech: Bash, jq, Node.js, vanilla JS/HTML/CSS. CDN over npm.
 - Comments: explain "why" only when non-obvious, start lowercase
 - After editing JS/TS files, run /sonarx to check for issues
 
@@ -42,16 +33,11 @@ Reference The Elements of Style and On Writing Well:
 
 Single sentence stating the goal, then bullet points with key changes.
 
-# Parallelization
-
-- Use as many agents in parallel as necessary
-- Aim to speed up the results and optimize the context
-- After agents share recommendations, review holistically
-- Make improvements they missed, guarantee coherency
-
 # Agents
 
-Use custom agents from ~/.claude/agents/ as sub-agents. Delegate proactively based on task type.
+Use custom agents from ~/.claude/agents/ as sub-agents. Delegate proactively based on task type. Run independent agents in parallel when possible.
+
+After agents share recommendations, review holistically. Make improvements they missed, guarantee coherency.
 
 ## Routing
 
@@ -59,9 +45,12 @@ Use custom agents from ~/.claude/agents/ as sub-agents. Delegate proactively bas
 - Framing for stakeholders, prioritizing, KPIs -> with-strategy
 - Risk assessment, launch readiness, failure modes -> with-paranoia
 - Stuck, reframing, unconventional angles -> with-lateral
-- Writing scripts, functions, modules, CLI tools, automation -> make-code
+- Writing scripts, functions, modules, CLI tools -> make-code
 - Multi-step data pipelines, dataset preparation -> make-dataset
 - Single-step format conversion, quick transforms -> make-quick
+- Holistic project assessment, structure review -> /review-project
+- Test coverage gaps, regression risks -> /review-tests
+- Markdown docs quality, cross-document review -> /review-docs
 
 ## Composition
 
@@ -74,8 +63,6 @@ For high-stakes decisions, run the deliberation sequence:
 For plans and launches, pair:
 1. with-strategy: frame the plan
 2. with-paranoia: stress-test it
-
-Run independent agents in parallel when possible.
 
 # Soul
 

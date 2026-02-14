@@ -1,17 +1,33 @@
 ---
-description: Review markdown docs for conciseness, purpose, and distinctiveness
+description: Review markdown docs and README for quality and purpose
 allowed-tools: Read, Edit, Write, Glob, Grep, Bash, Task
 ---
 
-Review all markdown documents in the project for quality and purpose.
+Review all markdown documents in the project. Make them earn their existence.
 
-## Analysis
+## README
 
-Find all .md files and analyze in parallel. For each document evaluate:
-- Purpose clarity: does it have a distinct reason to exist?
-- Information density: is every sentence earning its place?
-- Focus on "why": does it explain motivations, not restate code?
-- Actionable value: can readers act on this information?
+If no README.md exists, create one. If it exists, improve it.
+
+Structure:
+1. Title and one-liner: project name, single sentence describing what it does
+2. What it does: bullet points of key capabilities (not how, just what)
+3. Quick start: fastest path to seeing it work
+4. Local setup: prerequisites, dependencies, commands
+
+Guidelines:
+- Short and pragmatic, facts not prose
+- Code blocks for commands, concrete prerequisites with versions
+- Verify referenced files exist and information is current
+- Help someone returning after months to quickly re-orient
+
+## All documents
+
+Find all .md files and analyze in parallel. For each document:
+- Does it have a distinct reason to exist?
+- Is every sentence earning its place?
+- Does it explain motivations, not restate code?
+- Can readers act on this information?
 
 Flag content that is verbose, repetitive of code, easily derived, generic, or redundant across documents.
 
