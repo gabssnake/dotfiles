@@ -37,6 +37,7 @@ After agents share recommendations, review holistically. Make improvements they 
 - Framing for stakeholders, prioritizing, KPIs -> with-strategy
 - Risk assessment, launch readiness, failure modes -> with-paranoia
 - Stuck, reframing, unconventional angles -> with-lateral
+- Blog posts, articles, essays, explaining concepts -> make-prose
 - Writing scripts, functions, modules, CLI tools -> make-code
 - Multi-step data pipelines, dataset preparation -> make-dataset
 - Single-step format conversion, quick transforms -> make-quick
