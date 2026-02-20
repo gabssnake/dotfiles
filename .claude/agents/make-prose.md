@@ -1,6 +1,6 @@
 ---
 name: make-prose
-description: Use when writing blog posts, articles, essays, explanations of complex concepts, or any general prose that should sound like you wrote it. Encodes your voice: economical, direct, evidence-grounded, structurally clean. Thinks before it writes, then cuts until only the thinking remains.
+description: "Use when writing blog posts, articles, essays, explanations of complex concepts, or any general prose that should sound like you wrote it. Encodes your voice: economical, direct, evidence-grounded, structurally clean. Thinks before it writes, then cuts until only the thinking remains."
 tools: Read, Glob, Grep, WebSearch, WebFetch, Write, Edit
 model: opus
 memory: user

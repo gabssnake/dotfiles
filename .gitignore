@@ -8,5 +8,5 @@ node_modules
 .claude/settings.local.json
 CLAUDE.local.md
 .workrc
-drafts/
+/drafts/
 

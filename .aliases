@@ -39,6 +39,9 @@
   # Rebase over last branch
   alias reb='git rebase -i -'
 
+  # Quick switch between branches
+  alias pop='git switch -'
+
   # Undo last commit but leave changes for diff
   alias undo='git reset --soft HEAD^ && git reset HEAD --'
 
@@ -54,9 +57,6 @@
   # Expects a commit hash to be fixup
   # Later: git rebase -i --autosquash
   alias fixup='git commit -a --fixup'
-
-  # working on code-quality-competition
-  alias again="rm -r data/* && git checkout -- data/ static/"
 
   # call like `scope feature/branchie" to see list of files involved
   alias scope="git diff --name-only"
