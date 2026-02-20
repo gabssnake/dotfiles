@@ -4,6 +4,7 @@
 fileset=(
   .aliases
   .bashrc
+  .bash_profile
   .claude/CLAUDE.md
   .claude/SOUL.md
   .claude/agents/
@@ -32,6 +33,9 @@ function sync {
 
     # Ensure folders exist
     mkdir -p ~/.claude/commands/ 2>/dev/null
+    mkdir -p ~/.claude/skills/ 2>/dev/null
+    mkdir -p ~/.claude/agents/ 2>/dev/null
+    mkdir -p ~/.claude/legacy/ 2>/dev/null
     mkdir -p ~/.vim/colors/ 2>/dev/null
 
     for filename in "${fileset[@]}"; do
